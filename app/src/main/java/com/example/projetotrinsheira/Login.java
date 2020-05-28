@@ -43,26 +43,26 @@ public class Login extends AppCompatActivity {
                 if(emailInput.isEmpty()){
                     /*emailInput.setError("Please enter email");
                     emailInput.requestFocus();*/
-                    Toast.makeText(Login.this, "email field are empty",Toast.LENGTH_SHORT);
+                    Toast.makeText(Login.this, "email field are empty",Toast.LENGTH_SHORT).show();
                 }
                 else if(passwordInput.isEmpty()){
                     /*passwordInput.setError("Please enter password");
                     passwordInput.requestFocus();*/
-                    Toast.makeText(Login.this, "password field are empty",Toast.LENGTH_SHORT);
+                    Toast.makeText(Login.this, "password field are empty",Toast.LENGTH_SHORT).show();
                 }
                 else if(passwordInput.isEmpty() && emailInput.isEmpty()){
-                    Toast.makeText(Login.this, "fields are empty",Toast.LENGTH_SHORT);
+                    Toast.makeText(Login.this, "fields are empty",Toast.LENGTH_SHORT).show();
                 }
                 else if(!(passwordInput.isEmpty() && emailInput.isEmpty())){
-                    Toast.makeText(Login.this, "User Created",Toast.LENGTH_SHORT);
+                   // Toast.makeText(Login.this, "User Created",Toast.LENGTH_SHORT);
                     mAuth.signInWithEmailAndPassword(emailInput, passwordInput).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
-                                Toast.makeText(Login.this, "Sign In failed ",Toast.LENGTH_SHORT);
+                                Toast.makeText(Login.this, "Sign In failed! Check if data are correct! ",Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Toast.makeText(Login.this, "Sign In completed ",Toast.LENGTH_SHORT);
+                                Toast.makeText(Login.this, "Sign In completed ",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Login.this,LogOut.class));
                             }
                         }

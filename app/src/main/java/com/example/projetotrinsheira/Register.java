@@ -46,26 +46,26 @@ public class Register extends AppCompatActivity {
                 if(emailInput.isEmpty()){
                     /*emailInput.setError("Please enter email");
                     emailInput.requestFocus();*/
-                    Toast.makeText(Register.this, "email field are empty",Toast.LENGTH_SHORT);
+                    Toast.makeText(Register.this, "email field are empty",Toast.LENGTH_SHORT).show();
                 }
                 else if(passwordInput.isEmpty()){
                     /*passwordInput.setError("Please enter password");
                     passwordInput.requestFocus();*/
-                    Toast.makeText(Register.this, "password field are empty",Toast.LENGTH_SHORT);
+                    Toast.makeText(Register.this, "password field are empty",Toast.LENGTH_SHORT).show();
                 }
                 else if(passwordInput.isEmpty() && emailInput.isEmpty()){
-                    Toast.makeText(Register.this, "fields are empty",Toast.LENGTH_SHORT);
+                    Toast.makeText(Register.this, "fields are empty",Toast.LENGTH_SHORT).show();
                 }
                 else if(!(passwordInput.isEmpty() && emailInput.isEmpty())){
-                    Toast.makeText(Register.this, "User Created",Toast.LENGTH_SHORT);
+                   // Toast.makeText(Register.this, "User Created",Toast.LENGTH_SHORT);
                     mAuth.createUserWithEmailAndPassword(emailInput, passwordInput).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                            if(!task.isSuccessful()){
-                               Toast.makeText(Register.this, "Sign Up failed ",Toast.LENGTH_SHORT);
+                               Toast.makeText(Register.this, "Sign Up failed! Check if data is correct! ",Toast.LENGTH_SHORT).show();
                            }
                            else{
-                               Toast.makeText(Register.this, "Sign Up completed ",Toast.LENGTH_SHORT);
+                               Toast.makeText(Register.this, "Sign Up completed ",Toast.LENGTH_SHORT).show();
                                startActivity(new Intent(Register.this,LogOut.class));
                            }
                         }
@@ -73,7 +73,7 @@ public class Register extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(Register.this, "Error Occurred ",Toast.LENGTH_SHORT);
+                    Toast.makeText(Register.this, "Error Occurred ",Toast.LENGTH_SHORT).show();
                 }
             }
         });
