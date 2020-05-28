@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EditProfile"></activity>
+        <activity android:name=".LogOut"></activity>
         <activity android:name=".Profile" />
         <activity android:name=".MainActivity">
             <intent-filter>

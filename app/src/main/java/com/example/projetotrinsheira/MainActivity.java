@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity<CurrentActivity> extends AppCompatActivity {
 
@@ -22,6 +23,9 @@ public class MainActivity<CurrentActivity> extends AppCompatActivity {
 
         btnLogin= findViewById(R.id.btnLogin);
         btnRegister= findViewById(R.id.btnRegister);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,5 +48,14 @@ public class MainActivity<CurrentActivity> extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser!=null){
+            startActivity(new Intent(MainActivity.this,LogOut.class));
+        }
     }
 }
