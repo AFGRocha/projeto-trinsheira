@@ -222,7 +222,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_vote" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnLoginId"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="51dp"
         android:layout_height="48dp"

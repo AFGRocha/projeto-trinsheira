@@ -7,7 +7,7 @@
     tools:context=".Register">
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/emailId"
         android:layout_width="296dp"
         android:layout_height="56dp"
         android:layout_marginStart="58dp"
@@ -18,11 +18,11 @@
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:fontFamily="@font/noto_sans"
+        android:hint="E-mail"
+        android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:textColor="#992F2E2E"
         android:textSize="14sp"
-        android:inputType="textPersonName"
-        android:text="E-mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnSignUpId"
         android:layout_width="296dp"
         android:layout_height="48dp"
         android:layout_marginStart="57dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/passwordId"
         android:layout_width="296dp"
         android:layout_height="56dp"
         android:layout_marginStart="58dp"
@@ -77,11 +77,11 @@
         android:layout_marginRight="58dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
+        android:hint="Password"
         android:paddingLeft="10dp"
+        android:password="true"
         android:textColor="#992F2E2E"
         android:textSize="14sp"
-        android:password="true"
-        android:text="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +124,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/userNameId"
         android:layout_width="296dp"
         android:layout_height="56dp"
         android:layout_marginStart="58dp"
@@ -135,11 +135,11 @@
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:fontFamily="@font/noto_sans"
+        android:hint="Nome de utilizador"
+        android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:textColor="#992F2E2E"
         android:textSize="14sp"
-        android:inputType="textPersonName"
-        android:text="Nome de utilizador"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
