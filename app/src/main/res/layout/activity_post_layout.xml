@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".post_layout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="425dp"
+        android:layout_height="343dp">
+
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="Óscar Sousa"
+            android:textColor="#992F2E2E"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/post_votes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="325dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="37 Votos"
+            android:textColor="#992F2E2E"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/time_elapsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:text="1 sem"
+            android:textColor="#C1BDBD"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/post_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="90dp"
+            android:text="O Ondaparque foi um dos parques aquáticos.." />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="367dp"
+            android:layout_height="145dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="125dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <Button
+            android:id="@+id/btn_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="285dp"
+            android:background="#00FFFFFF"
+            android:text="👍Votar " />
+
+        <Button
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="155dp"
+            android:layout_marginTop="285dp"
+            android:background="#00FFFFFF"
+            android:text="🔗Partilhar" />
+
+        <Button
+            android:id="@+id/btn_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="285dp"
+            android:background="#00FFFFFF"
+            android:text="💬Comentar" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="49dp"
+            android:layout_height="51dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/btn_seeMore"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_marginLeft="315dp"
+            android:layout_marginTop="85dp"
+            android:background="#00FFFFFF"
+            android:text="Ver mais"
+            android:textColor="#B8B6B6"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
