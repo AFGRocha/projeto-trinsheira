@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AddPostTest"></activity>
-        <activity android:name=".EditProfile" />
-        <activity android:name=".LogOut" />
+        <activity android:name=".post_layout"></activity>
+        <activity android:name=".createPost" />
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".LogOut"></activity>
         <activity android:name=".Profile" />
         <activity android:name=".MainActivity">
             <intent-filter>

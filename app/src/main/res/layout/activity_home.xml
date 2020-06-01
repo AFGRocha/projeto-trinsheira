@@ -32,104 +32,48 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="425dp"
-                android:layout_height="343dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="604dp">
 
-                <TextView
-                    android:id="@+id/author_name"
-                    android:layout_width="169dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/noto_sans"
-                    android:text="Óscar Sousa"
-                    android:textColor="#992F2E2E"
-                    android:textSize="16sp" />
+            </androidx.recyclerview.widget.RecyclerView>
 
-                <TextView
-                    android:id="@+id/post_votes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="325dp"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/noto_sans"
-                    android:text="37 Votos"
-                    android:textColor="#992F2E2E"
-                    android:textSize="16sp" />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
 
-                <TextView
-                    android:id="@+id/time_elapsed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="50dp"
-                    android:text="1 sem"
-                    android:textColor="#C1BDBD"
-                    android:textSize="14sp" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="136dp"
+                android:layout_height="61dp"
+                android:text="Conta" />
 
-                <TextView
-                    android:id="@+id/post_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="90dp"
-                    android:text="O Ondaparque foi um dos parques aquáticos.." />
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="136dp"
+                android:layout_height="61dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-63dp"
+                android:text="🏠" />
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="367dp"
-                    android:layout_height="145dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="125dp"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="135dp"
+                android:layout_height="61dp"
+                android:layout_marginLeft="275dp"
+                android:layout_marginTop="-63dp"
+                android:text="Mapa" />
 
-                <Button
-                    android:id="@+id/btn_vote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="285dp"
-                    android:background="#00FFFFFF"
-                    android:text="👍Votar " />
-
-                <Button
-                    android:id="@+id/btn_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="155dp"
-                    android:layout_marginTop="285dp"
-                    android:background="#00FFFFFF"
-                    android:text="🔗Partilhar" />
-
-                <Button
-                    android:id="@+id/btn_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="285dp"
-                    android:background="#00FFFFFF"
-                    android:text="💬Comentar" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="49dp"
-                    android:layout_height="51dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="25dp"
-                    tools:srcCompat="@tools:sample/avatars" />
-
-                <Button
-                    android:id="@+id/btn_seeMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="33dp"
-                    android:layout_marginLeft="315dp"
-                    android:layout_marginTop="85dp"
-                    android:background="#00FFFFFF"
-                    android:text="Ver mais"
-                    android:textColor="#B8B6B6"
-                    android:textSize="12sp" />
-            </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginLeft="275dp"
+                android:layout_marginTop="-120dp"
+                android:background="@drawable/roundedbutton"
+                android:text="+" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
