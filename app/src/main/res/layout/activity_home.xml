@@ -72,8 +72,9 @@
                 android:layout_height="61dp"
                 android:layout_marginLeft="275dp"
                 android:layout_marginTop="-120dp"
-                android:background="@drawable/roundedbutton"
                 android:text="+" />
+                <!--android:background="@drawable/roundedbutton"-->
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
