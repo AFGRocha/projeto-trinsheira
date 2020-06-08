@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LogOut extends AppCompatActivity {
-    Button  logOutbtn;
+    Button  logOutbtn, addPostBtn;
 
     private FirebaseAuth mAuth;
 
@@ -31,6 +31,15 @@ public class LogOut extends AppCompatActivity {
                 if(mAuth.getCurrentUser()!=null)
                 { mAuth.signOut();
                startActivity(new Intent(LogOut.this,MainActivity.class));}
+            }
+        });
+
+        addPostBtn= findViewById(R.id.btnAddPostId);
+        addPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    startActivity(new Intent(LogOut.this,AddPostTest.class));
             }
         });
     }
