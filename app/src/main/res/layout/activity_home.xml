@@ -75,7 +75,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="135dp"
-                android:layout_marginTop="-35dp"
+                android:layout_marginTop="-40dp"
                 android:background="#00FFFFFF"
                 android:src="@drawable/home_green" />
 
