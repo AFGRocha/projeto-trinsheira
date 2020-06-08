@@ -45,28 +45,6 @@
                 android:background="?android:attr/listDivider" />
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="136dp"
-                android:layout_height="61dp"
-                android:text="Conta" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="136dp"
-                android:layout_height="61dp"
-                android:layout_marginLeft="140dp"
-                android:layout_marginTop="-63dp"
-                android:text="🏠" />
-
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="135dp"
-                android:layout_height="61dp"
-                android:layout_marginLeft="275dp"
-                android:layout_marginTop="-63dp"
-                android:text="Mapa" />
-
-            <Button
                 android:id="@+id/button9"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
@@ -74,6 +52,32 @@
                 android:layout_marginTop="-120dp"
                 android:background="@drawable/roundedbutton"
                 android:text="+" />
+
+            <ImageButton
+                android:id="@+id/account"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/user_grey" />
+
+            <ImageButton
+                android:id="@+id/map"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="265dp"
+                android:layout_marginTop="-40dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/pointer_gray" />
+
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="-35dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/home_green" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

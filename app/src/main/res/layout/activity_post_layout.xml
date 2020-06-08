@@ -58,32 +58,32 @@
             android:layout_marginTop="125dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <Button
-            android:id="@+id/btn_vote"
-            android:layout_width="wrap_content"
+        <ImageButton
+            android:id="@+id/btn_Vote"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="285dp"
             android:background="#00FFFFFF"
-            android:text="👍Votar " />
+            app:srcCompat="@drawable/like" />
 
-        <Button
-            android:id="@+id/btn_share"
-            android:layout_width="wrap_content"
+        <ImageButton
+            android:id="@+id/btn_Share"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="155dp"
             android:layout_marginTop="285dp"
             android:background="#00FFFFFF"
-            android:text="🔗Partilhar" />
+            app:srcCompat="@drawable/share" />
 
-        <Button
-            android:id="@+id/btn_comment"
-            android:layout_width="wrap_content"
+        <ImageButton
+            android:id="@+id/btn_Comment"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
             android:layout_marginTop="285dp"
             android:background="#00FFFFFF"
-            android:text="💬Comentar" />
+            app:srcCompat="@drawable/comment" />
 
         <ImageView
             android:id="@+id/imageView5"
