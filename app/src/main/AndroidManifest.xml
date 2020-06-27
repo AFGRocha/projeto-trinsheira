@@ -23,13 +23,14 @@
         <activity android:name=".ProfileFragment" />
         <activity
             android:name=".MainActivityBottomNavigation"
-            android:label="@string/title_activity_main_bottom_navigation" />
+            android:label="@string/title_activity_main_bottom_navigation"
+            android:theme="@style/AppTheme.NoActionBar"/>/>
         <activity android:name=".AddPostTest" />
         <activity android:name=".post_layout" />
         <activity android:name=".createPost" />
         <activity android:name=".EditProfile" />
         <activity android:name=".LogOut" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Profile" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

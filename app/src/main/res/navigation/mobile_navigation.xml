@@ -27,5 +27,6 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.projetotrinsheira.ui.profilefragment2.ProfileFragment2"
         android:label="@string/title_profile"
-        tools:layout="@layout/profile_fragment2_fragment" />
+        tools:layout="@layout/profile_fragment2_fragment"
+        />
 </navigation>

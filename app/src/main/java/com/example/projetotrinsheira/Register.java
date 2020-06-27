@@ -16,12 +16,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Register extends AppCompatActivity {
     Button btnRegisterSubmission;
     EditText userName, email, password;
     private FirebaseAuth mAuth;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String usernameInput;
 
 
     @Override
@@ -42,7 +48,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String emailInput = email.getText().toString();
                 String passwordInput = password.getText().toString();
-
+                usernameInput= userName.getText().toString();
                 if(emailInput.isEmpty()){
                     /*emailInput.setError("Please enter email");
                     emailInput.requestFocus();*/
@@ -66,6 +72,20 @@ public class Register extends AppCompatActivity {
                            }
                            else{
                                Toast.makeText(Register.this, "Sign Up completed ",Toast.LENGTH_SHORT).show();
+                               FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                               //get values
+                               String userId = currentUser.getUid();
+
+                               Map<String,Object> user = new HashMap<>();
+                               user.put("username", usernameInput);
+                               user.put("description", "");
+                               user.put("perfilPoints", "0");
+                               user.put("rank","0");
+                               user.put("image", "");
+                               user.put("userId", userId);
+
+                               db.collection("users").add(user);
                                startActivity(new Intent(Register.this,LogOut.class));
                            }
                         }

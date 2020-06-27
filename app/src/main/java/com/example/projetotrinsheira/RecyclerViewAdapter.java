@@ -1,6 +1,9 @@
 package com.example.projetotrinsheira;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -29,6 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mVotes = new ArrayList<>();
     private ArrayList<String> mDesc = new ArrayList<>();
     private Context mContext;
+    String imageStringPost;
 
     public RecyclerViewAdapter(Context mContext, ArrayList<String> mImageNames, ArrayList<String> mImages, ArrayList<String> mImagePosts, ArrayList<String> mTime,ArrayList<String> mVotes, ArrayList<String> mDesc) {
         this.mImageNames = mImageNames;
@@ -59,7 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .into(holder.image);
         Glide.with(mContext)
                 .asBitmap()
-                .load(mImagePosts.get(position))
+                .load(StringToBitMap(mImagePosts.get(position)))
                 .into(holder.imagePost);
 
         holder.imageName.setText(mImageNames.get(position));
@@ -92,6 +97,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             votes = itemView.findViewById(R.id.vote);
             desc = itemView.findViewById(R.id.desc);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+        }
+    }
+
+
+    public Bitmap StringToBitMap(String imageString){
+        try{
+            byte [] encodeByte = Base64.decode(imageString,Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }
+        catch(Exception e){
+            e.getMessage();
+            return null;
         }
     }
 }

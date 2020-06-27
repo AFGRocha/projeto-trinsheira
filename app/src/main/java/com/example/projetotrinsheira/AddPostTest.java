@@ -28,11 +28,14 @@ import android.location.LocationManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class AddPostTest extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE = 1001;
@@ -41,7 +44,7 @@ public class AddPostTest extends AppCompatActivity {
     TextInputEditText inputName, inputDesc, inputLocal, inputCoordenadas;
     private LocationManager locationManager;
     private LocationListener listener;
-
+    private FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Bitmap bitmap;
@@ -59,6 +62,7 @@ public class AddPostTest extends AppCompatActivity {
         inputLocal = (TextInputEditText) findViewById(R.id.inputLocalId);
         inputCoordenadas = (TextInputEditText) findViewById(R.id.inputCoordenadasId);
         imageViewPost = findViewById(R.id.imageViewPostId);
+        mAuth = FirebaseAuth.getInstance();
 
         //btnAddimg click
         btnAddImg.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +76,10 @@ public class AddPostTest extends AppCompatActivity {
         btnAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FirebaseUser currentUser = mAuth.getCurrentUser();
 
                 //get values
-
+                String userId = currentUser.getUid();
                 String name = inputName.getText().toString();
                 String desc = inputDesc.getText().toString();
                 String local = inputLocal.getText().toString();
@@ -90,6 +94,7 @@ public class AddPostTest extends AppCompatActivity {
                 post.put("local", local);
                 post.put("coordinates", coordinates);
                 post.put("image", image);
+                post.put("userId", userId);
 
 
                 db.collection("posts").add(post);
