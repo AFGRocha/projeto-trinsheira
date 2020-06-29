@@ -24,7 +24,7 @@
         <activity
             android:name=".MainActivityBottomNavigation"
             android:label="@string/title_activity_main_bottom_navigation"
-            android:theme="@style/AppTheme.NoActionBar"/>/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".AddPostTest" />
         <activity android:name=".post_layout" />
         <activity android:name=".createPost" />

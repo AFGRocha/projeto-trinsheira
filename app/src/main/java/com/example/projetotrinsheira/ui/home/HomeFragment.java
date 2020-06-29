@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetotrinsheira.AddPostTest;
+import com.example.projetotrinsheira.LogOut;
 import com.example.projetotrinsheira.MainActivity;
 import com.example.projetotrinsheira.R;
 import com.example.projetotrinsheira.RecyclerViewAdapter;
@@ -41,7 +44,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<QueryDocumentSnapshot> usersArray = new ArrayList<QueryDocumentSnapshot>();
     List<Map<String,List<String>>> list = new ArrayList<Map<String,List<String>>>();
 
-
+    ImageView buttonAdd;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 public String userIdDoc;
 
@@ -66,6 +69,15 @@ public String userIdDoc;
         }
         initPosts();
 
+        buttonAdd= root.findViewById(R.id.addbuttonId);
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(), AddPostTest.class));
+            }
+        });
 
 
         return root;

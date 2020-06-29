@@ -48,7 +48,8 @@ public class ProfileFragment2 extends Fragment {
 
 
     private FirebaseAuth mAuth;
-    TextView profileUsername, profileDesc, profileLocalidade;
+    TextView profileUsername, profileDesc, profileLocalidade, profilePoints, noPostsText;
+    ImageView profileImg;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /////posts config
@@ -66,6 +67,7 @@ public class ProfileFragment2 extends Fragment {
     private ArrayList<postsProfileUser> posts;
     public String userName="",userImg="";
     private MyAdapterRecyclerProfilePosts postsProfileAdapter;
+    private Integer postsCount=0;
 
     @Nullable
     @Override
@@ -79,6 +81,9 @@ public class ProfileFragment2 extends Fragment {
         profileUsername= view.findViewById(R.id.usernameId);
         profileDesc=view.findViewById(R.id.descId);
         profileLocalidade=view.findViewById(R.id.localidadeId);
+        profileImg=view.findViewById(R.id.imageViewProfile);
+        profilePoints= view.findViewById(R.id.textPerfilPoints);
+        noPostsText= view.findViewById(R.id.textNoPosts);
 
         //recyclerView and Layoutmanager
 
@@ -107,9 +112,19 @@ public class ProfileFragment2 extends Fragment {
 
                                 profileUsername.setText(documentUser.getString("username"));
                                 userName=documentUser.getString("username");
-                                profileDesc.setText(documentUser.getString("description"));
+                                if(documentUser.getString("description")!=null)
+                                {
+                                    profileDesc.setText(documentUser.getString("description"));
+
+                                }
+                                else{
+                                    profileDesc.setText("Utilizador do Trinsheira App");
+
+                                }
                                 profileLocalidade.setText(documentUser.getString("localidade"));
+                                profilePoints.setText(documentUser.get("perfilPoints").toString()+"pp");
                                 userImg=documentUser.getString("photo");
+                                profileImg.setImageBitmap(StringToBitMap(userImg));
 
                             Log.d("perfilUsername",documentUser.getString("username"));
 
@@ -136,7 +151,7 @@ public class ProfileFragment2 extends Fragment {
             }
         }});
 
-
+        //final Integer postsCount=0;
         ///print user posts
         db.collection("posts")
                 .whereEqualTo("userId",userId)
@@ -146,27 +161,55 @@ public class ProfileFragment2 extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (final QueryDocumentSnapshot document : task.getResult()) {
-                                //Log.d( "posts" , "username"+ userName);
-
-
 
                                 posts= new ArrayList<postsProfileUser>();
                                 //(String name, String desc, String local, String coordinates, String image)
-                                posts.add( new postsProfileUser(userName,document.getString("desc"),userImg,document.getString("image"),0,""));
+                                final String userId=document.getString("userId");
+                                final String[] userName = {null};
+                                final String[] userImg = {null};
 
-                                postsProfileAdapter = new MyAdapterRecyclerProfilePosts(posts);
+                                db.collection("users")
+                                        .whereEqualTo("userId",userId)
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (final QueryDocumentSnapshot documentUser : task.getResult()) {
 
-                                rvPosts.setAdapter(postsProfileAdapter);
+                                                      userName[0] =documentUser.getString("username");
+                                                      userImg[0] =documentUser.getString("photo");
+
+                                                        posts.add( new postsProfileUser(userName[0],document.getString("description"), userImg[0],document.getString("image"),0,""));
+                                                        Log.w("posts", "username"+userName[0]);
+                                                        postsProfileAdapter = new MyAdapterRecyclerProfilePosts(posts);
+
+                                                        rvPosts.setAdapter(postsProfileAdapter);
+
+                                                        if(posts.size()==0){
+                                                            noPostsText.setText("Sem publicações feitas!");
+                                                        }
+                                                        else{
+                                                            noPostsText.setText("");
+                                                        }
+
+                                                    }
+                                                }
+                                            }});
 
 
 
-                                //initRecyclerView();
                             }
+
                         } else {
                             Log.w("posts", "Error getting documents.", task.getException());
+                            //noPostsText.setText("Sem publicações feitas!");
+
+
                         }
                     }
                 });
+
 
 
         return  view;

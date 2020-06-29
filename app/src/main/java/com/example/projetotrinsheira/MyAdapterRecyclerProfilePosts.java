@@ -82,7 +82,7 @@ public class MyAdapterRecyclerProfilePosts extends  RecyclerView.Adapter<MyAdapt
         viewHolder.txtDesc.setText(item.getDesc());
         viewHolder.txtName.setText(item.getUsername());
         viewHolder.imgCover.setImageBitmap(StringToBitMap(item.getImage()));
-       //viewHolder.txtPhoto.setImageBitmap(StringToBitMap(item.getImageUser()));
+        viewHolder.txtPhoto.setImageBitmap(StringToBitMap(item.getImageUser()));
         viewHolder.txtVotes.setText(item.getVotos().toString()+" votos");
         viewHolder.txtTimePost.setText(item.getTempo());
 

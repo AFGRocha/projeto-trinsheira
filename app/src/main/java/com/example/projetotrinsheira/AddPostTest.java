@@ -33,6 +33,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,14 +88,18 @@ public class AddPostTest extends AppCompatActivity {
                 String image = BitMapToString(bitmap);
 
 
-                //PostHelperClass helperClass = new PostHelperClass(name, desc,local,coordinates, image);
-                Map<String, Object> post = new HashMap<>();
-                post.put("name", name);
-                post.put("description", desc);
-                post.put("local", local);
-                post.put("coordinates", coordinates);
-                post.put("image", image);
-                post.put("userId", userId);
+                PostHelperClass post = new PostHelperClass();
+                ///*Map<String, Object> post = new HashMap<>();
+
+                ArrayList<CommentsClass> comments=  new ArrayList<CommentsClass>();
+                post.setImage(name);
+                post.setDescription(desc);
+                post.setLocal(local);
+                post.setCoordinates(coordinates);
+                post.setImage(image);
+                post.setUserId( userId);
+                post.setComments(comments);
+                post.setVotes(0);
 
 
                 db.collection("posts").add(post);

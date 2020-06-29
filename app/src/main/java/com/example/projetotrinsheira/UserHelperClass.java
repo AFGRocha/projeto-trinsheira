@@ -1,18 +1,23 @@
 package com.example.projetotrinsheira;
 
-public class UserHelperClass { String username; String userId;  String desc; Integer rank; Integer perfilPoints;String image;
+import java.util.ArrayList;
+
+public class UserHelperClass { String username; String userId;  String description; Integer rank; Integer perfilPoints;String photo; Integer userType; Integer userLevelId; ArrayList<userAchievments> userAchievments;
 
     public UserHelperClass() {
 
     }
 
-    public UserHelperClass(String username, String desc, String userId,  Integer rank,Integer perfilPoints, String image) {
+    public UserHelperClass(String username, String description, String userId,  Integer rank,Integer perfilPoints, String photo, Integer userType,Integer userLevelId,ArrayList userAchievments) {
         this.username = username;
-        this.desc = desc;
+        this.description = description;
         this.userId = userId;
         this.rank= rank;
         this.perfilPoints= perfilPoints;
-        this.image = image;
+        this.photo = photo;
+        this.userType = userType;
+        this.userLevelId = userLevelId;
+        this.userAchievments= userAchievments;
     }
 
     public String getUsername() {
@@ -23,12 +28,12 @@ public class UserHelperClass { String username; String userId;  String desc; Int
         this.username = username;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String desc) {
+        this.description = description;
     }
 
     public String getUserId() {
@@ -55,11 +60,35 @@ public class UserHelperClass { String username; String userId;  String desc; Int
         this.perfilPoints = perfilPoints;
     }
 
-    public String getImage() {
-        return image;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
+    public Integer getUserLevelId() {
+        return userLevelId;
+    }
+
+    public void setUserLevelId(Integer userLevelId) {
+        this.userLevelId = userLevelId;
+    }
+
+    public ArrayList<com.example.projetotrinsheira.userAchievments> getUserAchievments() {
+        return userAchievments;
+    }
+
+    public void setUserAchievments(ArrayList<com.example.projetotrinsheira.userAchievments> userAchievments) {
+        this.userAchievments = userAchievments;
     }
 }
