@@ -49,12 +49,12 @@ public class homepage extends AppCompatActivity {
     }
 
     private void initRecyclerView(){
-        Log.v("T", "initRecycler");
+       /* Log.v("T", "initRecycler");
         //mProfile, ArrayList<String> mName, ArrayList<String> mTime, ArrayList<String> mVotes, ArrayList<String> mDesc, ArrayList<String> mPostImg, Context mContext
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls,mPostImg, mTime, mVotes, mDesc);
+        //RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls,mPostImg, mTime, mVotes, mDesc);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
 
     }
 }

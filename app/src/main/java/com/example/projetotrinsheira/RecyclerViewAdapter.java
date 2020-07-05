@@ -1,6 +1,7 @@
 package com.example.projetotrinsheira;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,16 +28,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
+    private ArrayList<String> mPostsId = new ArrayList<>();
+
     private ArrayList<String> mImageNames = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
     private ArrayList<String> mImagePosts = new ArrayList<>();
     private ArrayList<String> mTime = new ArrayList<>();
     private ArrayList<String> mVotes = new ArrayList<>();
     private ArrayList<String> mDesc = new ArrayList<>();
+   // private ArrayList<String> mPostsId= new ArrayList<>();
     private Context mContext;
     String imageStringPost;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImageNames, ArrayList<String> mImages, ArrayList<String> mImagePosts, ArrayList<String> mTime,ArrayList<String> mVotes, ArrayList<String> mDesc) {
+    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImageNames, ArrayList<String> mImages, ArrayList<String> mImagePosts, ArrayList<String> mTime,ArrayList<String> mVotes, ArrayList<String> mDesc, ArrayList<String> mPostsId ) {
         this.mImageNames = mImageNames;
         this.mImages = mImages;
         this.mImagePosts = mImagePosts;
@@ -43,6 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mVotes = mVotes;
         this.mDesc = mDesc;
         this.mContext = mContext;
+        this.mPostsId = mPostsId;
+
     }
 
     @NonNull
@@ -60,7 +67,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Glide.with(mContext)
                 .asBitmap()
-                .load(mImages.get(position))
+                .load(StringToBitMap(mImages.get(position)))
                 .into(holder.image);
         Glide.with(mContext)
                 .asBitmap()
@@ -69,8 +76,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.imageName.setText(mImageNames.get(position));
         holder.time.setText(mTime.get(position));
-        holder.votes.setText(mVotes.get(position));
+        holder.votes.setText(mVotes.get(position)+" votos");
         holder.desc.setText(mDesc.get(position));
+        holder.imagePost.setTag(mPostsId.get(position));
+
+        holder.imagePost .setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Log.d("onClick", "Post "  + v.getTag().toString());
+                Intent intent = new Intent(mContext,posts.class);
+                intent.putExtra("POST_ID", v.getTag().toString());
+                mContext.startActivity(intent);
+            }
+
+
+        });
+
+
     }
 
     @Override
@@ -81,7 +104,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         CircleImageView image;
-        ImageView imagePost;
+        ImageView imagePost, imageUser;
         TextView imageName;
         TextView time;
         TextView votes;
@@ -93,6 +116,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             image = itemView.findViewById(R.id.image);
             imageName = itemView.findViewById(R.id.image_name);
             imagePost = itemView.findViewById(R.id.postImg);
+            //imageUser= itemView.findViewById(R.id.image);
+            //Button b = itemView.findViewById(R.id.btnPartilhar);
+           /* imagePost .setOnClickListener(new View.OnClickListener() {
+                @Override
+
+                public void onClick(View v) {
+                    Log.d("onClick", "Post" + getAdapterPosition() + " clicado.");
+                    Intent intent = new Intent(mContext,posts.class);
+                    mContext.startActivity(intent);
+                }
+
+
+            });*/
             time = itemView.findViewById(R.id.time_post);
             votes = itemView.findViewById(R.id.vote);
             desc = itemView.findViewById(R.id.desc);

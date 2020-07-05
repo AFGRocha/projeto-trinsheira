@@ -34,13 +34,14 @@ import java.util.Map;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-
+    private ArrayList<String> mPostsId = new ArrayList<>();
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
     private ArrayList<String> mPostImg = new ArrayList<>();
     private ArrayList<String> mTime = new ArrayList<>();
     private ArrayList<String> mVotes = new ArrayList<>();
     private ArrayList<String> mDesc = new ArrayList<>();
+    private ArrayList<String> mUserPhoto = new ArrayList<>();
     private ArrayList<QueryDocumentSnapshot> usersArray = new ArrayList<QueryDocumentSnapshot>();
     List<Map<String,List<String>>> list = new ArrayList<Map<String,List<String>>>();
 
@@ -93,16 +94,10 @@ public String userIdDoc;
                         if (task.isSuccessful()) {
                             for (final QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d( "posts" ,document.getId() + " => " + document.getString("name"));
-                                mImageUrls.add("https://i.redd.it/tpsnoz5bzo501.jpg");
-                                mPostImg.add(document.getString("image"));
-                                mTime.add("2 sem");
-                                mVotes.add(document.getString("votes"));
-                              // mNames.add("Óscar Sousa");
-                                mDesc.add(document.getString("description"));
-                                userIdDoc=document.getString("userId");
+
 
                                 db.collection("users")
-                                        .whereEqualTo("userId",userIdDoc)
+                                        .whereEqualTo("userId",document.getString("userId"))
                                         .get()
                                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
@@ -110,8 +105,14 @@ public String userIdDoc;
                                                 if (task.isSuccessful()) {
                                                     for (final QueryDocumentSnapshot documentUser : task.getResult()) {
 
-
+                                                        mPostImg.add(document.getString("image"));
+                                                        mTime.add("2 sem");
+                                                        mVotes.add(document.get("votes").toString());
+                                                        // mNames.add("Óscar Sousa");
+                                                        mDesc.add(document.getString("description"));
+                                                        mPostsId.add(document.getId());
                                                             mNames.add(documentUser.getString("username"));
+                                                             mImageUrls.add(documentUser.getString("photo"));
                                                             initRecyclerView();
 
 
@@ -138,7 +139,7 @@ public String userIdDoc;
         Log.v("T", "initRecycler");
         //mProfile, ArrayList<String> mName, ArrayList<String> mTime, ArrayList<String> mVotes, ArrayList<String> mDesc, ArrayList<String> mPostImg, Context mContext
         RecyclerView recyclerView = root.findViewById(R.id.recyclerId);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), mNames, mImageUrls,mPostImg, mTime, mVotes, mDesc);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), mNames, mImageUrls,mPostImg, mTime, mVotes, mDesc,mPostsId);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

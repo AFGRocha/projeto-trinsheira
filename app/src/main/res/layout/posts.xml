@@ -53,16 +53,56 @@
     <ImageView
         android:id="@+id/postImg"
         android:layout_width="400dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="120dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="105dp"
         android:src="@mipmap/ic_launcher" />
+
+    <Button
+        android:id="@+id/votarBtnId"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="340dp"
+        android:text="Votar"
+        android:textColor="@android:color/darker_gray"
+
+        />
+
+
+    <Button
+        android:id="@+id/comentarBtnId"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="340dp"
+        android:text="Comentar"
+        android:textColor="@android:color/darker_gray"
+        />
+
+    <Button
+        android:id="@+id/partilharBtnId"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="340dp"
+        android:text="Partilhar"
+        android:textColor="@android:color/darker_gray"
+        />
 
     <TextView
         android:id="@+id/textView25"
         android:layout_width="400dp"
-        android:layout_height="3dp"
+        android:layout_height="1dp"
         android:layout_below="@+id/postImg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"
         android:text="" />
 

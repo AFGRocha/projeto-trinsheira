@@ -3,12 +3,12 @@ package com.example.projetotrinsheira;
 public class postsProfileUser {
 
 
-    String  desc, imageUser, image,username, tempo;
-    Integer votos;
+    String  desc, imageUser, image,username, tempo,   votos;
 
 
 
-    public postsProfileUser(String username, String desc, String imageUser, String image, Integer votos, String tempo) {
+
+    public postsProfileUser(String username, String desc, String imageUser, String image, String votos, String tempo) {
         this.username = username;
         this.desc = desc;
         this.imageUser=imageUser;
@@ -51,11 +51,11 @@ public class postsProfileUser {
         this.image = image;
     }
 
-    public Integer getVotos() {
+    public String  getVotos() {
         return votos;
     }
 
-    public void setVotos(Integer votos) {
+    public void setVotos(String  votos) {
         this.votos = votos;
     }
 

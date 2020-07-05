@@ -100,6 +100,8 @@ public class ProfileFragment2 extends Fragment {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         String userId = firebaseUser.getUid();
 
+        Log.d("profileFragment","entrei");
+
         //get user data
         db.collection("users")
                 .whereEqualTo("userId",userId)
@@ -167,6 +169,7 @@ public class ProfileFragment2 extends Fragment {
                                 final String userId=document.getString("userId");
                                 final String[] userName = {null};
                                 final String[] userImg = {null};
+                                final Integer[] votos = {0};
 
                                 db.collection("users")
                                         .whereEqualTo("userId",userId)
@@ -179,8 +182,8 @@ public class ProfileFragment2 extends Fragment {
 
                                                       userName[0] =documentUser.getString("username");
                                                       userImg[0] =documentUser.getString("photo");
-
-                                                        posts.add( new postsProfileUser(userName[0],document.getString("description"), userImg[0],document.getString("image"),0,""));
+                                                     // votos[0] = Integer.parseInt((String) document.get("votes"));
+                                                        posts.add( new postsProfileUser(userName[0],document.getString("description"), userImg[0],document.getString("image"), document.get("votes").toString() ,""));
                                                         Log.w("posts", "username"+userName[0]);
                                                         postsProfileAdapter = new MyAdapterRecyclerProfilePosts(posts);
 
@@ -222,15 +225,7 @@ public class ProfileFragment2 extends Fragment {
         // TODO: Use the ViewModel
     }
 
-    private void initRecyclerView(){
-        Log.v("T", "initRecycler");
-        //mProfile, ArrayList<String> mName, ArrayList<String> mTime, ArrayList<String> mVotes, ArrayList<String> mDesc, ArrayList<String> mPostImg, Context mContext
-        RecyclerView recyclerView = view.findViewById(R.id.ReciclerId);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), mNames, mImageUrls,mPostImg, mTime, mVotes, mDesc);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-    }
     public Bitmap StringToBitMap(String imageString){
         try{
             byte [] encodeByte = Base64.decode(imageString,Base64.DEFAULT);

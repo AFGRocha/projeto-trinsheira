@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class PostHelperClass {
     String name, description, local, coordinates, image, userId;
-    Integer votes;
+    Number votes;
     ArrayList<CommentsClass> comments;
     Date postDate;
 
@@ -14,7 +14,7 @@ public class PostHelperClass {
 
     }
 
-    public PostHelperClass(String name, String description, String local, String coordinates, String image, Integer votes, String userId,ArrayList<CommentsClass> comments,Date postDate) {
+    public PostHelperClass(String name, String description, String local, String coordinates, String image, Number votes, String userId,ArrayList<CommentsClass> comments,Date postDate) {
         this.name = name;
         this.description = description;
         this.local = local;
@@ -66,11 +66,11 @@ public class PostHelperClass {
         this.image = image;
     }
 
-    public Integer getVotes() {
+    public Number getVotes() {
         return votes;
     }
 
-    public void setVotes(Integer votes) {
+    public void setVotes(Number votes) {
         this.votes = votes;
     }
 
