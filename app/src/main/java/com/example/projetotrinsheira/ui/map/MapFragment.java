@@ -85,7 +85,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                 LatLng test =  getLocationFromAddress(context,document.getString("adress"));
                                 Log.v("Address", "Teste: " + document.getString("adress"));
                                 Log.v("Text", "pls " + test);
-                                mMap.addMarker(new MarkerOptions().position(test).title(document.getString("name")).snippet(document.getString("votes")));
+                                mMap.addMarker(new MarkerOptions().position(test).title(document.getString("name")).snippet(document.getString("votes") + ";" + document.getString("image") ));
 
                             }
                         }
