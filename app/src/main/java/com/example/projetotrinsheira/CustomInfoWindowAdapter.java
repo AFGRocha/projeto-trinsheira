@@ -1,6 +1,7 @@
 package com.example.projetotrinsheira;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -31,7 +32,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         }
 
         String snippet = marker.getSnippet();
-        String[] arrOfStr = snippet.split(";", 2);
+        String[] arrOfStr = snippet.split(";", 3);
 
         TextView tvSnippet = (TextView) view.findViewById(R.id.infoVotes);
         if(!snippet.equals("")){
@@ -41,6 +42,8 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         ImageView tvImage = (ImageView) view.findViewById((R.id.infoImage));
         Log.v("Image", "pls " + arrOfStr[1]);
         tvImage.setImageBitmap(StringToBitMap(arrOfStr[1]));
+
+
     }
 
     @Override
