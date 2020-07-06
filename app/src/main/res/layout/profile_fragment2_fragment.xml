@@ -156,7 +156,7 @@
         android:id="@+id/logOutBtnId"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/logout"
+        android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.883"
