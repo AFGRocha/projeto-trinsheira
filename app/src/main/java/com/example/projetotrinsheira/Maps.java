@@ -57,7 +57,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
         mMap.setMinZoomPreference(1.0f);
         mMap.setMaxZoomPreference(20.0f);
         final Context context = getApplicationContext();
-        //mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter((Maps.this)));
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter((Maps.this)));
 
 
         db.collection("posts").get()

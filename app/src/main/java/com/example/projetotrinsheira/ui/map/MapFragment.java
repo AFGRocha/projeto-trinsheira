@@ -70,7 +70,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mMap.setMinZoomPreference(1.0f);
         mMap.setMaxZoomPreference(20.0f);
         final Context context = getContext();
-
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter((context)));
 
 
         db.collection("posts").get()
@@ -85,14 +85,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                 LatLng test =  getLocationFromAddress(context,document.getString("adress"));
                                 Log.v("Address", "Teste: " + document.getString("adress"));
                                 Log.v("Text", "pls " + test);
-                                Log.v("Info", "pls " + document.getString("image"));
-                                mMap.addMarker(new MarkerOptions().position(test).title(document.getString("name")).snippet(document.getString("votes") + ";" + document.getString("image") ));
-                                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(context));
+                                mMap.addMarker(new MarkerOptions().position(test).title(document.getString("name")).snippet(document.getString("votes")));
+
                             }
                         }
                         else{
                         }}});
-
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(getLocationFromAddress(context,"Portugal")));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(7),200, null);

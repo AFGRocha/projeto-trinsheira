@@ -1,11 +1,7 @@
 package com.example.projetotrinsheira;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.Image;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,16 +27,13 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         }
 
         String snippet = marker.getSnippet();
-        String[] arrOfStr = snippet.split(";", 2);
-
         TextView tvSnippet = (TextView) view.findViewById(R.id.infoVotes);
         if(!snippet.equals("")){
-            tvSnippet.setText(arrOfStr[0] + " votos");
+            tvTitle.setText(title);
         }
 
         ImageView tvImage = (ImageView) view.findViewById((R.id.infoImage));
-        Log.v("Image", "pls " + arrOfStr[1]);
-        tvImage.setImageBitmap(StringToBitMap(arrOfStr[1]));
+        tvImage.setImageResource(R.drawable.back_arrow);
     }
 
     @Override
@@ -53,17 +46,5 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     public View getInfoContents(Marker marker) {
         renderWindowText(marker, mWindow);
         return mWindow;
-    }
-
-    public Bitmap StringToBitMap(String imageString){
-        try{
-            byte [] encodeByte = Base64.decode(imageString,Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        }
-        catch(Exception e){
-            e.getMessage();
-            return null;
-        }
     }
 }

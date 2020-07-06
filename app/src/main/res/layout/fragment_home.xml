@@ -17,7 +17,7 @@
         android:id="@+id/addbuttonId"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/back_arrow"
+        android:src="@drawable/buttonadd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.873"
