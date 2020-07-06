@@ -18,7 +18,7 @@
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/nameViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/nameViewId" />
 
     <View
         android:id="@+id/divider2"
@@ -128,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewautor"
         android:layout_width="54dp"
         android:layout_height="51dp"
         android:layout_marginStart="26dp"
@@ -152,7 +152,7 @@
         android:text="Sobre o Autor"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewautor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -165,7 +165,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="12dp"
         android:text="Oscar Sousa"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageViewautor"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
@@ -175,8 +175,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="7dp"
-        android:text="Costa da Caparica"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageViewautor"
         app:layout_constraintTop_toBottomOf="@+id/author_name" />
 
     <TextView
@@ -231,13 +230,13 @@
     <Button
         android:id="@+id/btnBack"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text=""
+        android:layout_width="33dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/back_arrow"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

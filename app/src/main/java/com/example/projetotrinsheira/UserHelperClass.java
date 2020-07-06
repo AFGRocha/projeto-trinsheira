@@ -2,13 +2,13 @@ package com.example.projetotrinsheira;
 
 import java.util.ArrayList;
 
-public class UserHelperClass { String username; String userId;  String description; Integer rank; Integer perfilPoints;String photo; Integer userType; Integer userLevelId; ArrayList<userAchievments> userAchievments;
+public class UserHelperClass { String username; String userId;  String description; Integer rank; String perfilPoints;String photo; Integer userType; Integer userLevelId; ArrayList<userAchievments> userAchievments;
 
     public UserHelperClass() {
 
     }
 
-    public UserHelperClass(String username, String description, String userId,  Integer rank,Integer perfilPoints, String photo, Integer userType,Integer userLevelId,ArrayList userAchievments) {
+    public UserHelperClass(String username, String description, String userId,  Integer rank,String perfilPoints, String photo, Integer userType,Integer userLevelId,ArrayList userAchievments) {
         this.username = username;
         this.description = description;
         this.userId = userId;
@@ -52,11 +52,11 @@ public class UserHelperClass { String username; String userId;  String descripti
         this.rank = rank;
     }
 
-    public Integer getPerfilPoints() {
+    public String getPerfilPoints() {
         return perfilPoints;
     }
 
-    public void setPerfilPoints(Integer rank) {
+    public void setPerfilPoints(String perfilPoints) {
         this.perfilPoints = perfilPoints;
     }
 
