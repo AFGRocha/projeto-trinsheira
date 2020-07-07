@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -135,6 +136,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 if(votesArray.equals("")){
                                     Log.d("checkuserVotes", votesArray );
                                     holder.votarBtn.setText("Votar");
+                                    holder.votarBtn.setTextColor(mContext.getResources().getColor(R.color.darkergrey));
+
+
 
 
 
@@ -157,10 +161,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                     }
 
                                     if (idPostFound.equals(true)) {
-                                        holder.votarBtn.setText("Cancelar Voto");
+                                        holder.votarBtn.setText("Votado");
+                                        //btn represents your button object
+
+                                       // holder.votarBtn.setBackgroundColor(mContext.getResources().getColor(R.color.verde));
+                                        holder.votarBtn.setTextColor(mContext.getResources().getColor(R.color.verde));
                                     }
                                     else{
                                         holder.votarBtn.setText("Votar");
+                                        holder.votarBtn.setTextColor(mContext.getResources().getColor(R.color.darkergrey));
                                     }
                                 }
 
@@ -175,9 +184,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
+///função onclickCommentbtn
+
+        holder.comentarBtn.setTag(mPostsId.get(position));
+        holder.comentarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Log.d("onClick", "Post "  + v.getTag().toString());
+                Intent intent = new Intent(mContext,posts.class);
+                intent.putExtra("POST_ID", v.getTag().toString());
+                mContext.startActivity(intent);
+            }
 
 
-
+        });
 
 
 
@@ -238,7 +259,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                                             DocumentReference userRef = db.collection("users").document(documentUser.getId());
                                                             userRef.update("votes",votesStringNew);
 
-                                                            holder.votarBtn.setText("Cancelar Voto");
+                                                            holder.votarBtn.setText("Votado");
+                                                            //btn represents your button object
+
+                                                            // holder.votarBtn.setBackgroundColor(mContext.getResources().getColor(R.color.verde));
+                                                            holder.votarBtn.setTextColor(mContext.getResources().getColor(R.color.verde));
+
+                                                            String expText = documentUser.getString("perfilPoints");
+
+                                                            int exp = 0;
+                                                            try {
+                                                                exp = Integer.parseInt(expText);
+                                                            } catch(NumberFormatException nfe) {
+                                                                System.out.println("Could not parse " + nfe);
+                                                            }
+
+                                                            exp = exp + 5;
+                                                            String expFinal = String.valueOf(exp);
+
+                                                            userRef.update("perfilPoints", expFinal);
 
 
                                                         }
@@ -276,6 +315,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                                             DocumentReference userRef = db.collection("users").document(documentUser.getId());
                                                             userRef.update("votes",votesStringNew);
                                                             holder.votarBtn.setText("Votar");
+                                                            holder.votarBtn.setTextColor(mContext.getResources().getColor(R.color.darkergrey));
+
+                                                            String expText = documentUser.getString("perfilPoints");
+
+                                                            int exp = 0;
+                                                            try {
+                                                                exp = Integer.parseInt(expText);
+                                                            } catch(NumberFormatException nfe) {
+                                                                System.out.println("Could not parse " + nfe);
+                                                            }
+
+                                                            exp = exp - 5;
+                                                            String expFinal = String.valueOf(exp);
+
+                                                            userRef.update("perfilPoints", expFinal);
                                                         }
                                                     }
                                                 }

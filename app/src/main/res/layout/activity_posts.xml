@@ -217,6 +217,7 @@
                 android:background="#00A592"
                 android:fontFamily="@font/amaranth"
                 android:text="Votar"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/author_city" />
