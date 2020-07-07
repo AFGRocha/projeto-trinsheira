@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:id="@+id/parent_layout_comments">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/user_image"
+        android:text="Canada"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/user_comment"
+        android:layout_width="294dp"
+        android:layout_height="81dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/user_image"
+        android:text="1 sem"
+        android:textSize="17sp" />
+
+
+</RelativeLayout>
