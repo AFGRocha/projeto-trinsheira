@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PostHelperClass {
-    String name, description, local, coordinates, image, userId;
-    Number votes;
+    String name, description, adress, coordinates, image, userId, votes;
+
     ArrayList<CommentsClass> comments;
     Date postDate;
 
@@ -14,10 +14,10 @@ public class PostHelperClass {
 
     }
 
-    public PostHelperClass(String name, String description, String local, String coordinates, String image, Number votes, String userId,ArrayList<CommentsClass> comments,Date postDate) {
+    public PostHelperClass(String name, String description, String adress, String coordinates, String image, String votes, String userId,ArrayList<CommentsClass> comments,Date postDate) {
         this.name = name;
         this.description = description;
-        this.local = local;
+        this.adress = adress;
         this.coordinates = coordinates;
         this.image = image;
         this.votes=votes;
@@ -42,12 +42,12 @@ public class PostHelperClass {
         this.description = description;
     }
 
-    public String getLocal() {
-        return local;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public String getCoordinates() {
@@ -66,11 +66,11 @@ public class PostHelperClass {
         this.image = image;
     }
 
-    public Number getVotes() {
+    public String getVotes() {
         return votes;
     }
 
-    public void setVotes(Number votes) {
+    public void setVotes(String votes) {
         this.votes = votes;
     }
 

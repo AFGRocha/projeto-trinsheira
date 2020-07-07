@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAddPostId"
         android:layout_width="296dp"
         android:layout_height="48dp"
         android:layout_marginStart="57dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/NomeId"
         android:layout_width="333dp"
         android:layout_height="56dp"
         android:layout_marginStart="19dp"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/descId"
         android:layout_width="333dp"
         android:layout_height="56dp"
         android:layout_marginStart="19dp"
@@ -135,7 +135,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/inputLocalId"
         android:layout_width="333dp"
         android:layout_height="56dp"
         android:layout_marginStart="19dp"

@@ -94,12 +94,12 @@ public class AddPostTest extends AppCompatActivity {
                 ArrayList<CommentsClass> comments=  new ArrayList<CommentsClass>();
                 post.setImage(name);
                 post.setDescription(desc);
-                post.setLocal(local);
+                post.setAdress(local);
                 post.setCoordinates(coordinates);
                 post.setImage(image);
                 post.setUserId( userId);
                 post.setComments(comments);
-                post.setVotes(0);
+                post.setVotes("0");
 
 
                 db.collection("posts").add(post);

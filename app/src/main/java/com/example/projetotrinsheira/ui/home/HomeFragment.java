@@ -19,6 +19,7 @@ import com.example.projetotrinsheira.LogOut;
 import com.example.projetotrinsheira.MainActivity;
 import com.example.projetotrinsheira.R;
 import com.example.projetotrinsheira.RecyclerViewAdapter;
+import com.example.projetotrinsheira.createPost;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,7 +77,7 @@ public String userIdDoc;
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getActivity(), AddPostTest.class));
+                startActivity(new Intent(getActivity(), createPost.class));
             }
         });
 

@@ -41,6 +41,7 @@
             android:exported="true" />
         <activity android:name=".MapActivity" />
         <activity android:name=".ProfileFragment" />
+
         <activity
             android:name=".MainActivityBottomNavigation"
             android:label="@string/title_activity_main_bottom_navigation"
