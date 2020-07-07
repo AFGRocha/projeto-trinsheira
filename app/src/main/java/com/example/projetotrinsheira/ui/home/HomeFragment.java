@@ -6,7 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +24,7 @@ import com.example.projetotrinsheira.MainActivity;
 import com.example.projetotrinsheira.R;
 import com.example.projetotrinsheira.RecyclerViewAdapter;
 import com.example.projetotrinsheira.createPost;
+import com.example.projetotrinsheira.posts;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +52,10 @@ public class HomeFragment extends Fragment {
     List<Map<String,List<String>>> list = new ArrayList<Map<String,List<String>>>();
 
     ImageView buttonAdd;
+    Button buttonSearch;
+    EditText searchBar;
+    TextView noFind;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 public String userIdDoc;
 
@@ -70,6 +79,7 @@ public String userIdDoc;
 
         }
         initPosts();
+        searchPosts();
 
         buttonAdd= root.findViewById(R.id.addbuttonId);
 
@@ -80,6 +90,7 @@ public String userIdDoc;
                 startActivity(new Intent(getActivity(), createPost.class));
             }
         });
+
 
 
         return root;
@@ -134,6 +145,86 @@ public String userIdDoc;
                 });
         Log.v("T", "initPosts");
 
+
+
+    }
+
+    private void searchPosts(){
+        buttonSearch = root.findViewById(R.id.btnSearch);
+        searchBar = root.findViewById(R.id.editSearch);
+        noFind = root.findViewById(R.id.noFind);
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mPostImg.clear();
+                mTime.clear();
+                mVotes.clear();
+                // mNames.add("Óscar Sousa");
+                mDesc.clear();
+                mPostsId.clear();
+                mNames.clear();
+                mImageUrls.clear();
+
+                db.collection("posts").orderBy("name")
+                        .startAt(searchBar.getText().toString())
+                        .endAt(searchBar.getText().toString() +"\uf8ff")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (final QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d( "postSearch" ,document.getId() + " => " + document.getString("name"));
+
+
+                                        db.collection("users")
+                                                .whereEqualTo("userId",document.getString("userId"))
+                                                .get()
+                                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                        if (task.isSuccessful()) {
+                                                            for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+
+                                                                mPostImg.add(document.getString("image"));
+                                                                mTime.add("2 sem");
+                                                                mVotes.add(document.get("votes").toString());
+                                                                // mNames.add("Óscar Sousa");
+                                                                mDesc.add(document.getString("description"));
+                                                                mPostsId.add(document.getId());
+                                                                mNames.add(documentUser.getString("username"));
+                                                                mImageUrls.add(documentUser.getString("photo"));
+                                                                initRecyclerView();
+
+
+
+                                                            }
+
+
+
+                                                        }
+                                                        else{
+                                                        }}});
+
+
+
+                                    }
+
+                                } else {
+                                    Log.w("posts", "Error getting documents.", task.getException());
+                                }
+                            }
+
+                        });
+
+
+
+            }
+
+
+        });
     }
 
     private void initRecyclerView(){

@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.projetotrinsheira.EditProfile;
 import com.example.projetotrinsheira.LogOut;
 import com.example.projetotrinsheira.MainActivity;
 import com.example.projetotrinsheira.MyAdapterRecyclerProfilePosts;
@@ -103,6 +104,7 @@ public class ProfileFragment2 extends Fragment {
         Log.d("profileFragment","entrei");
 
         //get user data
+        /*
         db.collection("users")
                 .whereEqualTo("userId",userId)
                 .get()
@@ -123,7 +125,7 @@ public class ProfileFragment2 extends Fragment {
                                     profileDesc.setText("Utilizador do Trinsheira App");
 
                                 }
-                                profileLocalidade.setText(documentUser.getString("localidade"));
+                                profileLocalidade.setText(documentUser.getString("local"));
                                 profilePoints.setText(documentUser.get("perfilPoints").toString()+"pp");
                                 userImg=documentUser.getString("photo");
                                 profileImg.setImageBitmap(StringToBitMap(userImg));
@@ -135,10 +137,20 @@ public class ProfileFragment2 extends Fragment {
                             }
                         }
                         else{
-                        }}});
+                        }}}); */
 
 
         //button logout
+        ImageView btnEdit = (ImageView) view.findViewById(R.id.profileEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditProfile.class);
+                startActivity(intent);
+        }});
+
+
+        //button edit
         ImageView btnSearch= (ImageView) view.findViewById(R.id.logOutBtnId);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +162,8 @@ public class ProfileFragment2 extends Fragment {
                     startActivity(intent);
                     //startActivity(new Intent(getContext(), MainActivity.class));}
 
-            }
-        }});
+                }
+            }});
 
         //final Integer postsCount=0;
         ///print user posts
@@ -223,6 +235,78 @@ public class ProfileFragment2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ProfileFragment2ViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        //Refresh your stuff here
+        Log.v("Boy","We turn it back");
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        //profile campos
+        profileUsername= view.findViewById(R.id.usernameId);
+        profileDesc=view.findViewById(R.id.descId);
+        profileLocalidade=view.findViewById(R.id.localidadeId);
+        profileImg=view.findViewById(R.id.imageViewProfile);
+        profilePoints= view.findViewById(R.id.textPerfilPoints);
+        noPostsText= view.findViewById(R.id.textNoPosts);
+
+        //recyclerView and Layoutmanager
+
+        rvPosts = view.findViewById(R.id.ReciclerId);
+        rvPosts.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(llm);
+
+
+
+
+        //get userId
+
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        String userId = firebaseUser.getUid();
+
+        Log.d("profileFragment","entrei");
+
+        //get user data
+        db.collection("users")
+                .whereEqualTo("userId",userId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+
+                                profileUsername.setText(documentUser.getString("username"));
+                                userName=documentUser.getString("username");
+                                if(documentUser.getString("description")!=null)
+                                {
+                                    profileDesc.setText(documentUser.getString("description"));
+
+                                }
+                                else{
+                                    profileDesc.setText("Utilizador do Trinsheira App");
+
+                                }
+                                profileLocalidade.setText(documentUser.getString("local"));
+                                profilePoints.setText(documentUser.get("perfilPoints").toString()+"pp");
+                                userImg=documentUser.getString("photo");
+                                profileImg.setImageBitmap(StringToBitMap(userImg));
+
+                                Log.v("Boy","We turn it INNNNN");
+
+
+
+                            }
+                        }
+                        else{
+                        }}});
+
     }
 
 
