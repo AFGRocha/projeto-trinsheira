@@ -1,5 +1,6 @@
 package com.example.projetotrinsheira;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,16 +60,16 @@ public class posts extends AppCompatActivity {
         final TextView nameView = findViewById(R.id.nameViewId);
         final ImageView imageView = findViewById(R.id.imageView);
         final TextView votesView = findViewById(R.id.votes);
-        final TextView  descView = findViewById(R.id.desc);
-        final TextView  adressView = findViewById(R.id.adress);
+        final TextView descView = findViewById(R.id.desc);
+        final TextView adressView = findViewById(R.id.adress);
         final ImageView imageViewautor = findViewById(R.id.imageViewautor);
-        final TextView  userNamePost = findViewById(R.id.author_name);
+        final TextView userNamePost = findViewById(R.id.author_name);
 
         final Button button = findViewById(R.id.btnInputComment);
+        final Button buttonVote = findViewById(R.id.btnVote);
         final EditText editComment = findViewById(R.id.editComment);
 
         final Button buttonBack = findViewById(R.id.btnBack);
-
 
 
         final String postId = intent.getStringExtra("POST_ID");
@@ -83,7 +86,7 @@ public class posts extends AppCompatActivity {
                         Log.d("postPage", "DocumentSnapshot data: " + document.getString("name"));
 
                         db.collection("users")
-                                .whereEqualTo("userId",document.getString("userId"))
+                                .whereEqualTo("userId", document.getString("userId"))
                                 .get()
                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
@@ -92,11 +95,9 @@ public class posts extends AppCompatActivity {
                                             for (final QueryDocumentSnapshot documentUser : task.getResult()) {
 
 
-
-
                                                 nameView.setText(document.getString("name"));
                                                 imageView.setImageBitmap(StringToBitMap(document.getString("image")));
-                                                votesView.setText(document.getString("votes")+" votos");
+                                                votesView.setText(document.getString("votes") + " votos");
                                                 descView.setText(document.getString("description"));
                                                 adressView.setText(document.getString("adress"));
                                                 imageViewautor.setImageBitmap(StringToBitMap(documentUser.getString("photo")));
@@ -105,12 +106,13 @@ public class posts extends AppCompatActivity {
 
                                             }
                                         }
-                                    }});
+                                    }
+                                });
                         db.collection("comments")
                                 .whereEqualTo("postId", postId)
-                                .get()
+                                 .get()
                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
+                                   @Override
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                         if (task.isSuccessful()) {
                                             for (final QueryDocumentSnapshot document : task.getResult()) {
@@ -132,11 +134,13 @@ public class posts extends AppCompatActivity {
                                                                         Log.v("Yes", " " + mNames);
                                                                     }
                                                                 }
-                                                            }});
+                                                            }
+                                                        });
 
                                             }
                                         }
-                                    }});
+                                    }
+                                });
 
                     } else {
                         Log.d("postPage", "No such document");
@@ -145,10 +149,67 @@ public class posts extends AppCompatActivity {
                     Log.d("postPage", "get failed with ", task.getException());
                 }
 
-               // Log.v("Yes", "Bro " + postComments);
+                // Log.v("Yes", "Bro " + postComments);
 
             }
         });
+
+
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        final String userId = firebaseUser.getUid();
+
+        final String[] userIdField = new String[1];
+
+        db.collection("users")
+                .whereEqualTo("userId", userId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+                               // Log.v("Yes", "Entrou");
+
+                                Log.d("docUserVotes", "documentUser votes) data: " + documentUser.getString("votes"));
+                                String votesArray= documentUser.getString("votes");
+                               // userIdField[0] =documentUser.getString("userId");
+                                if(votesArray.equals("")){
+                                    Log.d("checkuserVotes", votesArray );
+                                    buttonVote.setText("Votar");
+
+
+
+
+                                }
+                                else{
+                                    //votesArray.split()
+                                    String[] arrOfStr = votesArray.split(";", votesArray.length());
+                                    Log.d("checkuserVotes", "votesStringData" + arrOfStr[0]);
+                                    Boolean idPostFound=false;
+                                    for(int i=0;i<arrOfStr.length;i++){
+                                        if(arrOfStr[i].equals(postId)){
+                                            idPostFound=true;
+                                            i=arrOfStr.length;
+                                        }
+                                        else{
+                                            idPostFound=false;
+
+                                        }
+                                    }
+
+                                    if (idPostFound.equals(true)) {
+                                        buttonVote.setText("Cancelar Voto");
+                                    }
+                                    else{
+                                        buttonVote.setText("Votar");
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                });
+
 
 
 
@@ -158,9 +219,9 @@ public class posts extends AppCompatActivity {
 
                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
                 String userId = firebaseUser.getUid();
-                CommentsClass newComment = new CommentsClass(editComment.getText().toString(), userId,postId);
+                CommentsClass newComment = new CommentsClass(editComment.getText().toString(), userId, postId);
                 Log.v("Yes", " " + editComment.getText().toString() + " " + userId + " " + postId);
-                Toast.makeText(posts.this, "Comentário realizado",Toast.LENGTH_SHORT).show();
+                Toast.makeText(posts.this, "Comentário realizado", Toast.LENGTH_SHORT).show();
                 db.collection("comments").add(newComment);
 
                 mNames.clear();
@@ -194,11 +255,16 @@ public class posts extends AppCompatActivity {
                                                                 Log.v("Yes", " " + mNames);
                                                             }
                                                         }
-                                                    }});
+                                                    }
+                                                });
+
+
+
 
                                     }
                                 }
-                            }});
+                            }
+                        });
 
             }
         });
@@ -210,12 +276,159 @@ public class posts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                posts.this.finish();
+                Intent intent = new Intent(posts.this , MainActivityBottomNavigation.class);
+                startActivity(intent);
 
             }
         });
 
+        //VOTAR
+        buttonVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            ///////////////////////////////////
+
+                final String[] stringVotes = new String[1];
+                final Integer[] numbVotes = new Integer[1];
+
+
+                //função para adicionar voto
+                DocumentReference docRef = db.collection("posts").document(postId);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            final DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d("postPage", "DocumentSnapshot data: " + document.getString("name"));
+
+                                /// get logged user votes
+
+
+                                numbVotes[0] =Integer.parseInt(document.getString("votes"));
+
+                                String btnTextString;
+
+                                if(buttonVote.getText().equals("Votar")){
+                                    numbVotes[0]= numbVotes[0]+1;
+
+                                    db.collection("users")
+                                            .whereEqualTo("userId", userId)
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+                                                            // Log.v("Yes", "Entrou");
+
+                                                            String votesStringOld = documentUser.getString("votes");
+                                                            String votesStringNew = votesStringOld+";"+postId;
+
+                                                            DocumentReference userRef = db.collection("users").document(documentUser.getId());
+                                                            userRef.update("votes",votesStringNew);
+
+                                                            buttonVote.setText("Cancelar Voto");
+
+
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+                                }
+                                else{
+                                    numbVotes[0]= numbVotes[0]-1;
+                                    db.collection("users")
+                                            .whereEqualTo("userId", userId)
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+                                                            // Log.v("Yes", "Entrou");
+
+                                                            String votesStringOld = documentUser.getString("votes");
+                                                            String votesStringNew="";
+
+                                                            String[] arrOfStr = votesStringOld.split(";", votesStringOld.length());
+
+                                                            for(int i=0;i<arrOfStr.length;i++){
+                                                                if(arrOfStr[i].equals(postId)){
+
+                                                                }
+                                                                else{
+                                                                    votesStringNew=votesStringNew+";"+arrOfStr[i];
+                                                                }
+                                                            }
+
+                                                            DocumentReference userRef = db.collection("users").document(documentUser.getId());
+                                                            userRef.update("votes",votesStringNew);
+                                                            buttonVote.setText("Votar");
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+
+                                }
+
+
+
+                                                DocumentReference docPostRef = db.collection("posts").document(postId);
+
+// Set the "isCapital" field of the city 'DC'
+
+                                                docPostRef
+                                                        .update("votes", numbVotes[0].toString())
+                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void aVoid) {
+                                                                votesView.setText(numbVotes[0].toString()+" votos");
+                                                                Log.d("TAG", "DocumentSnapshot successfully updated!");
+                                                            }
+                                                        })
+                                                        .addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Log.w("TAG", "Error updating document", e);
+                                                            }
+                                                        });
+
+
+
+
+
+
+
+
+
+                            } else {
+                                Log.d("postPage", "No such document");
+                            }
+                        } else {
+                            Log.d("postPage", "get failed with ", task.getException());
+                        }
+
+                        // Log.v("Yes", "Bro " + postComments);
+
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+        ////////////////////////////////
+            }
+        });
 
 
     }
