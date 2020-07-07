@@ -212,6 +212,7 @@ public class posts extends AppCompatActivity {
 
 
 
+        //comments
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,6 +266,36 @@ public class posts extends AppCompatActivity {
                                 }
                             }
                         });
+
+                db.collection("users")
+                        .whereEqualTo("userId", userId)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+                                        Log.v("Game", "Entrou");
+                                        String expText = documentUser.getString("perfilPoints");
+                                        Log.v("Game Text", ">" + expText);
+                                        int exp = 0;
+                                        try {
+                                            exp = Integer.parseInt(expText);
+                                        } catch(NumberFormatException nfe) {
+                                            System.out.println("Could not parse " + nfe);
+                                        }
+                                        Log.v("Game Int", ">" + exp);
+                                        exp = exp + 10;
+                                        String expFinal = String.valueOf(exp);
+                                        Log.v("Game Final", ">" + expFinal);
+                                        DocumentReference userRef = db.collection("users").document(documentUser.getId());
+                                        userRef.update("perfilPoints", expFinal);
+
+                                    }
+                                }
+                            }
+                        });
+
 
             }
         });
@@ -329,6 +360,20 @@ public class posts extends AppCompatActivity {
                                                             DocumentReference userRef = db.collection("users").document(documentUser.getId());
                                                             userRef.update("votes",votesStringNew);
 
+
+                                                            String expText = documentUser.getString("perfilPoints");
+
+                                                            int exp = 0;
+                                                            try {
+                                                                exp = Integer.parseInt(expText);
+                                                            } catch(NumberFormatException nfe) {
+                                                                System.out.println("Could not parse " + nfe);
+                                                            }
+
+                                                            exp = exp + 5;
+                                                            String expFinal = String.valueOf(exp);
+
+                                                            userRef.update("perfilPoints", expFinal);
                                                             buttonVote.setText("Cancelar Voto");
 
 
@@ -366,6 +411,19 @@ public class posts extends AppCompatActivity {
 
                                                             DocumentReference userRef = db.collection("users").document(documentUser.getId());
                                                             userRef.update("votes",votesStringNew);
+                                                            String expText = documentUser.getString("perfilPoints");
+
+                                                            int exp = 0;
+                                                            try {
+                                                                exp = Integer.parseInt(expText);
+                                                            } catch(NumberFormatException nfe) {
+                                                                System.out.println("Could not parse " + nfe);
+                                                            }
+
+                                                            exp = exp - 5;
+                                                            String expFinal = String.valueOf(exp);
+
+                                                            userRef.update("perfilPoints", expFinal);
                                                             buttonVote.setText("Votar");
                                                         }
                                                     }

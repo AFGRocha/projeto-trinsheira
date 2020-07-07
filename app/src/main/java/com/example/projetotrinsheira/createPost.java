@@ -1,5 +1,6 @@
 package com.example.projetotrinsheira;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,16 +10,22 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.projetotrinsheira.ui.home.HomeFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -80,7 +87,7 @@ public class createPost extends AppCompatActivity {
                 ///*Map<String, Object> post = new HashMap<>();
 
                 ArrayList<CommentsClass> comments=  new ArrayList<CommentsClass>();
-                post.setImage(name);
+                post.setName(name);
                 post.setDescription(desc);
                 post.setAdress(local);
                // post.setCoordinates(coordinates);
@@ -91,6 +98,39 @@ public class createPost extends AppCompatActivity {
 
 
                 db.collection("posts").add(post);
+
+
+                //gamificaçao
+                db.collection("users")
+                        .whereEqualTo("userId", userId)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+                                        Log.v("Game", "Entrou");
+                                        String expText = documentUser.getString("perfilPoints");
+                                        Log.v("Game Text", ">" + expText);
+                                        int exp = 0;
+                                        try {
+                                            exp = Integer.parseInt(expText);
+                                        } catch(NumberFormatException nfe) {
+                                            System.out.println("Could not parse " + nfe);
+                                        }
+                                        Log.v("Game Int", ">" + exp);
+                                        exp = exp + 20;
+                                        String expFinal = String.valueOf(exp);
+                                        Log.v("Game Final", ">" + expFinal);
+                                        DocumentReference userRef = db.collection("users").document(documentUser.getId());
+                                        userRef.update("perfilPoints", expFinal);
+
+                                    }
+                                }
+                            }
+                        });
+
+
 
                 Intent intent = new Intent(createPost.this , MainActivityBottomNavigation.class);
                 startActivity(intent);
