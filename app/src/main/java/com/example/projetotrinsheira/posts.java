@@ -65,6 +65,7 @@ public class posts extends AppCompatActivity {
         final ImageView imageViewautor = findViewById(R.id.imageViewautor);
         final TextView userNamePost = findViewById(R.id.author_name);
         final TextView userLocal = findViewById(R.id.author_local);
+        final TextView userPoints = findViewById(R.id.author_points);
 
         final Button button = findViewById(R.id.btnInputComment);
         final Button buttonVote = findViewById(R.id.btnVote);
@@ -104,6 +105,7 @@ public class posts extends AppCompatActivity {
                                                 imageViewautor.setImageBitmap(StringToBitMap(documentUser.getString("photo")));
                                                 userNamePost.setText(documentUser.getString("username"));
                                                 userLocal.setText(documentUser.getString("local"));
+                                                userPoints.setText(documentUser.get("perfilPoints") + "pp");
 
                                             }
                                         }
