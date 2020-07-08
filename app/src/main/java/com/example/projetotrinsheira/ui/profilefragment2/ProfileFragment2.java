@@ -208,9 +208,9 @@ public class ProfileFragment2 extends Fragment {
                                                       userName[0] =documentUser.getString("username");
                                                       userImg[0] =documentUser.getString("photo");
                                                      // votos[0] = Integer.parseInt((String) document.get("votes"));
-                                                        posts.add( new postsProfileUser(userName[0],document.getString("description"), userImg[0],document.getString("image"), document.get("votes").toString() ,""));
+                                                        posts.add( new postsProfileUser(userName[0],document.getString("description"), userImg[0],document.getString("image"), document.get("votes").toString() ,document.get("postDate").toString() ,document.getId()));
                                                         Log.w("posts", "username"+userName[0]);
-                                                        postsProfileAdapter = new MyAdapterRecyclerProfilePosts(posts);
+                                                        postsProfileAdapter = new MyAdapterRecyclerProfilePosts(getActivity(), posts);
 
                                                         rvPosts.setAdapter(postsProfileAdapter);
 

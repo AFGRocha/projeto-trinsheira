@@ -3,18 +3,19 @@ package com.example.projetotrinsheira;
 public class postsProfileUser {
 
 
-    String  desc, imageUser, image,username, tempo,   votos;
+    String  desc, imageUser, image,username, tempo,   votos, postId;
 
 
 
 
-    public postsProfileUser(String username, String desc, String imageUser, String image, String votos, String tempo) {
+    public postsProfileUser(String username, String desc, String imageUser, String image, String votos, String tempo,String postId) {
         this.username = username;
         this.desc = desc;
         this.imageUser=imageUser;
         this.votos=votos;
         this.image = image;
         this.tempo=tempo;
+        this.postId=postId;
     }
 
     public String getUsername() {
@@ -65,5 +66,13 @@ public class postsProfileUser {
 
     public String getTempo() {
         return tempo;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public String getPostId() {
+        return postId;
     }
 }

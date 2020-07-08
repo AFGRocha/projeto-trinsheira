@@ -35,7 +35,7 @@
             android:layout_marginTop="30dp"
             android:layout_toRightOf="@+id/image"
             android:text="1 sem"
-            android:textSize="17sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/vote"

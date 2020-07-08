@@ -28,7 +28,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class createPost extends AppCompatActivity {
 
@@ -76,7 +80,10 @@ public class createPost extends AppCompatActivity {
                 createPost.this.finish();
             }
         });
+        Date c = Calendar.getInstance().getTime();
 
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        final String formattedDate = df.format(c);
         btnAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +110,10 @@ public class createPost extends AppCompatActivity {
                 post.setUserId( userId);
                 post.setComments(comments);
                 post.setVotes("0");
+
+
+                Log.v("Data",formattedDate);
+                post.setPostDate(formattedDate);
 
 
                 db.collection("posts").add(post);

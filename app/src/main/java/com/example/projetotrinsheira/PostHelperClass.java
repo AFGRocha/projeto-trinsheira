@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PostHelperClass {
-    String name, description, adress, coordinates, image, userId, votes;
+    String name, description, adress, coordinates, image, userId, votes,postDate;
 
     ArrayList<CommentsClass> comments;
-    Date postDate;
+
 
 
     public PostHelperClass() {
 
     }
 
-    public PostHelperClass(String name, String description, String adress, String coordinates, String image, String votes, String userId,ArrayList<CommentsClass> comments,Date postDate) {
+    public PostHelperClass(String name, String description, String adress, String coordinates, String image, String votes, String userId,ArrayList<CommentsClass> comments,String postDate) {
         this.name = name;
         this.description = description;
         this.adress = adress;
@@ -90,11 +90,11 @@ public class PostHelperClass {
         this.comments = comments;
     }
 
-    public Date getPostDate() {
+    public String getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Date postDate) {
+    public void setPostDate(String postDate) {
         this.postDate = postDate;
     }
 }
