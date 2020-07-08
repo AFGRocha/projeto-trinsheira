@@ -96,7 +96,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         final Context context = getContext();
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter((context)));
 
-        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.pointer_green);
+        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.pin_green);
         Bitmap b = bitmapdraw.getBitmap();
         final Bitmap smallMarker = Bitmap.createScaledBitmap(b, 150, 150, false);
 

@@ -4,106 +4,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:id="@+id/parent_layout">
+    android:id="@+id/parent_layout"
+    android:background="#fff">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@mipmap/ic_launcher" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/image_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@+id/image"
+            android:text="Canada"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/time_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/image"
+            android:text="1 sem"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="249dp"
+            android:layout_toRightOf="@+id/image"
+            android:text="37 Votos"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image"
+            android:layout_marginTop="10dp"
+            android:text="Onda Parque"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/postImg"
+            android:layout_width="400dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="105dp"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <Button
+            android:id="@+id/votarBtnId"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="340dp"
+            android:text="Votar"
+            android:textColor="@android:color/darker_gray"
+
+            />
+
+        <Button
+            android:id="@+id/comentarBtnId"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="66dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="340dp"
+            android:layout_toEndOf="@+id/votarBtnId"
+            android:layout_toRightOf="@+id/votarBtnId"
+            android:text="Comentar"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="400dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/postImg"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray"
+            android:text="" />
+
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/image_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_toRightOf="@+id/image"
-        android:text="Canada"
-        android:textSize="17sp" />
-
-    <TextView
-        android:id="@+id/time_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/image"
-        android:text="1 sem"
-        android:textSize="17sp" />
-
-    <TextView
-        android:id="@+id/vote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="214dp"
-        android:layout_toRightOf="@+id/image"
-        android:text="37 Votos"
-        android:textSize="17sp" />
-
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image"
-        android:layout_marginTop="10dp"
-        android:text="Onda Parque"
-        android:textSize="17sp" />
-
-    <ImageView
-        android:id="@+id/postImg"
-        android:layout_width="400dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="105dp"
-        android:src="@mipmap/ic_launcher" />
-
-    <Button
-        android:id="@+id/votarBtnId"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="340dp"
-        android:text="Votar"
-        android:textColor="@android:color/darker_gray"
-
-        />
-
-
-    <Button
-        android:id="@+id/comentarBtnId"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="340dp"
-        android:text="Comentar"
-        android:textColor="@android:color/darker_gray"
-        />
-
-    <Button
-        android:id="@+id/partilharBtnId"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="260dp"
-        android:layout_marginTop="340dp"
-        android:text="Partilhar"
-        android:textColor="@android:color/darker_gray"
-        />
-
-    <TextView
-        android:id="@+id/textView25"
-        android:layout_width="400dp"
+        android:id="@+id/textView26"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/postImg"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/darker_gray"
+        android:layout_marginTop="410dp"
+        android:background="#707070"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="411dp"
+        android:background="#EBEBEB"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="421dp"
+        android:background="#707070"
         android:text="" />
 
 </RelativeLayout>

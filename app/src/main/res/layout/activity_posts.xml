@@ -107,11 +107,10 @@
 
             <TextView
                 android:id="@+id/adress"
-                android:layout_width="239dp"
-                android:layout_height="32dp"
+                android:layout_width="222dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="7dp"
                 android:layout_marginLeft="7dp"
-                android:layout_marginTop="33dp"
                 android:layout_marginEnd="84dp"
                 android:layout_marginRight="84dp"
                 android:layout_marginBottom="35dp"
@@ -120,9 +119,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/map2"
                 app:layout_constraintTop_toBottomOf="@+id/divider2"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/map2"
                 android:layout_width="55dp"
                 android:layout_height="54dp"
@@ -132,12 +131,12 @@
                 android:layout_marginEnd="7dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginBottom="20dp"
-                android:background="#00FFFFFF"
-                android:src="@drawable/pointer_gray"
+                android:src="@drawable/pointer_green"
                 app:layout_constraintBottom_toTopOf="@+id/divider3"
                 app:layout_constraintEnd_toStartOf="@+id/adress"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                app:layout_constraintTop_toBottomOf="@+id/divider2"
+                app:layout_constraintVertical_bias="0.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewautor"
@@ -170,6 +169,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
             <TextView
+                android:id="@+id/textView21"
+                android:layout_width="143dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="Comentários"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+            <TextView
+                android:id="@+id/author_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="42dp"
+                android:text=" "
+                app:layout_constraintStart_toEndOf="@+id/imageViewautor"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
                 android:id="@+id/author_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -180,29 +204,18 @@
                 app:layout_constraintStart_toEndOf="@+id/imageViewautor"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-            <TextView
-                android:id="@+id/author_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="7dp"
-                app:layout_constraintStart_toEndOf="@+id/imageViewautor"
-                app:layout_constraintTop_toBottomOf="@+id/author_name" />
 
             <TextView
-                android:id="@+id/author_posts"
+                android:id="@+id/author_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="127dp"
-                android:layout_marginLeft="127dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:text="1 publicação"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/author_name"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+                android:layout_marginStart="268dp"
+                android:layout_marginLeft="268dp"
+                android:layout_marginTop="12dp"
+                android:text="10pp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewautor"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <Button
                 android:id="@+id/btnVote"
@@ -220,7 +233,7 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/author_city" />
+                app:layout_constraintTop_toBottomOf="@+id/author_local" />
 
             <Button
                 android:id="@+id/btnBack"
@@ -245,33 +258,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnVote" />
 
+
             <EditText
                 android:id="@+id/editComment"
                 android:layout_width="361dp"
                 android:layout_height="91dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="26dp"
                 android:layout_marginRight="26dp"
+                android:background="@drawable/comment_box"
                 android:ems="10"
                 android:inputType="textMultiLine|textLongMessage"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/divider4" />
-
 
             <Button
                 android:id="@+id/btnInputComment"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="33dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="740dp"
+                android:layout_marginTop="768dp"
                 android:background="@drawable/back_arrow"
-                android:text=""
                 android:scaleX="-1"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.87"
+                app:layout_constraintHorizontal_bias="0.859"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

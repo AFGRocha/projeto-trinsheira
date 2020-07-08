@@ -28,6 +28,7 @@ import com.example.projetotrinsheira.MyAdapterRecyclerProfilePosts;
 import com.example.projetotrinsheira.PostHelperClass;
 import com.example.projetotrinsheira.R;
 import com.example.projetotrinsheira.RecyclerViewAdapter;
+import com.example.projetotrinsheira.Statistics;
 import com.example.projetotrinsheira.postsProfileUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,8 +50,8 @@ public class ProfileFragment2 extends Fragment {
 
 
     private FirebaseAuth mAuth;
-    TextView profileUsername, profileDesc, profileLocalidade, profilePoints, noPostsText;
-    ImageView profileImg;
+    TextView profileUsername, profileDesc, profileLocalidade, profilePoints, noPostsText,rank;
+    ImageView profileImg, badge;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /////posts config
@@ -85,6 +86,8 @@ public class ProfileFragment2 extends Fragment {
         profileImg=view.findViewById(R.id.imageViewProfile);
         profilePoints= view.findViewById(R.id.textPerfilPoints);
         noPostsText= view.findViewById(R.id.textNoPosts);
+        badge = view.findViewById(R.id.badge);
+        rank = view.findViewById(R.id.textRank);
 
         //recyclerView and Layoutmanager
 
@@ -93,6 +96,16 @@ public class ProfileFragment2 extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rvPosts.setLayoutManager(llm);
 
+        badge = view.findViewById(R.id.badge);
+
+        badge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Statistics.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -295,6 +308,25 @@ public class ProfileFragment2 extends Fragment {
                                 }
                                 profileLocalidade.setText(documentUser.getString("local"));
                                 profilePoints.setText(documentUser.get("perfilPoints").toString()+"pp");
+                                String expText = documentUser.getString("perfilPoints");
+
+                                int exp = 0;
+                                try {
+                                    exp = Integer.parseInt(expText);
+                                } catch(NumberFormatException nfe) {
+                                    System.out.println("Could not parse " + nfe);
+                                }
+                                if(exp < 150){
+                                    badge.setImageResource(R.drawable.iniciante);
+                                    rank.setText("Perfil Iniciante");
+                                }else if(exp >= 150 && exp < 300){
+                                    badge.setImageResource(R.drawable.intermedio);
+                                    rank.setText("Perfil Intermedio");
+                                }
+                                else if(exp >= 300){
+                                    badge.setImageResource(R.drawable.mestre);
+                                    rank.setText("Perfil Mestre");
+                                }
                                 userImg=documentUser.getString("photo");
                                 profileImg.setImageBitmap(StringToBitMap(userImg));
 
