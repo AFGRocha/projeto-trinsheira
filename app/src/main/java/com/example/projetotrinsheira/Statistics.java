@@ -25,6 +25,7 @@ public class Statistics extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     public String userImg="";
+    public int votes = 0;
     public int comments = 0;
     public int posts = 0;
     TextView userVotes,userComents,userPosts;
@@ -76,8 +77,16 @@ public class Statistics extends AppCompatActivity {
                                 else{
                                     //votesArray.split()
                                     String[] arrOfStr = votesArray.split(";", votesArray.length());
+                                    for(int i=0;i<arrOfStr.length;i++){
+                                        if(arrOfStr[i].equals("")){
 
-                                    userVotes.setText("" + (arrOfStr.length - 1));
+                                        }
+                                        else{
+                                            votes++;
+                                        }
+                                    }
+
+                                    userVotes.setText("" + votes);
 
                                 }
 
