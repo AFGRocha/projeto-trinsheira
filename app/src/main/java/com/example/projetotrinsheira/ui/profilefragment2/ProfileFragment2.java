@@ -28,6 +28,7 @@ import com.example.projetotrinsheira.MyAdapterRecyclerProfilePosts;
 import com.example.projetotrinsheira.PostHelperClass;
 import com.example.projetotrinsheira.R;
 import com.example.projetotrinsheira.RecyclerViewAdapter;
+import com.example.projetotrinsheira.Statistics;
 import com.example.projetotrinsheira.postsProfileUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +51,7 @@ public class ProfileFragment2 extends Fragment {
 
     private FirebaseAuth mAuth;
     TextView profileUsername, profileDesc, profileLocalidade, profilePoints, noPostsText;
-    ImageView profileImg;
+    ImageView profileImg, badge;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /////posts config
@@ -93,6 +94,16 @@ public class ProfileFragment2 extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rvPosts.setLayoutManager(llm);
 
+        badge = view.findViewById(R.id.badge);
+
+        badge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Statistics.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 

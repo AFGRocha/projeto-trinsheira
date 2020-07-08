@@ -71,13 +71,13 @@
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
         android:layout_marginLeft="47dp"
+        android:layout_marginTop="264dp"
         android:fontFamily="@font/noto_sans"
         android:text="Perfil Iniciante"
         android:textColor="#2F2E2E"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -104,8 +104,8 @@
         android:textColor="#707070"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.404"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toEndOf="@+id/textView29"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -188,6 +188,16 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="23dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toStartOf="@+id/textView29"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/localidadeId" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
