@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Statistics">
 
+    <Button
+        android:id="@+id/btnBackStats"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="33dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_arrow_white"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView37"
         android:layout_width="337dp"

@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +31,7 @@ public class Statistics extends AppCompatActivity {
     public int comments = 0;
     public int posts = 0;
     TextView userVotes,userComents,userPosts;
+    Button back;
 
     ImageView profileImg;
 
@@ -48,6 +51,15 @@ public class Statistics extends AppCompatActivity {
         userVotes = findViewById(R.id.userVotes);
         userComents = findViewById(R.id.userComents);
         userPosts = findViewById(R.id.userPosts);
+        back = findViewById(R.id.btnBackStats);
+
+        //close
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Statistics.this.finish();
+            }
+        });
 
 
         //get user data
