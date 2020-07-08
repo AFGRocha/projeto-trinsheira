@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class createPost extends AppCompatActivity {
 
     private static final int IMAGE_CAPTURE_CODE = 1001;
-    Button btnAddImg, btnAddPost;
+    Button btnAddImg, btnAddPost, btnBack;
     ImageView imageViewPost,imageBtnPost;
     EditText inputName, inputDesc, inputLocal, inputCoordenadas;
     private LocationManager locationManager;
@@ -66,6 +66,14 @@ public class createPost extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 0);
+            }
+        });
+
+        btnBack = findViewById(R.id.btnBackPub);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createPost.this.finish();
             }
         });
 

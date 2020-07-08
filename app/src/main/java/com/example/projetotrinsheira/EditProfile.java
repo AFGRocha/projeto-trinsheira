@@ -41,6 +41,7 @@ public class EditProfile extends AppCompatActivity {
 
     EditText profileUsername, profileDesc, profileLocalidade, profilePassword;
     ImageView profileImg;
+    Button back;
     public String userName="",userImg="";
 
     @Override
@@ -70,6 +71,18 @@ public class EditProfile extends AppCompatActivity {
                 chooseImage();
             }
         });
+
+
+
+        //go back
+        back = findViewById(R.id.btnBackProfile);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditProfile.this.finish();
+            }
+        });
+
 
         editProfile();
         //get user data

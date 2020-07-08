@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".createPost">
 
+    <Button
+        android:id="@+id/btnBackPub"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="33dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back_arrow"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
