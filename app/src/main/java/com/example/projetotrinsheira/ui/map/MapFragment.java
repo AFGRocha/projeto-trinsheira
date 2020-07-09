@@ -25,6 +25,7 @@ import com.example.projetotrinsheira.AddPostTest;
 import com.example.projetotrinsheira.CustomInfoWindowAdapter;
 import com.example.projetotrinsheira.Maps;
 import com.example.projetotrinsheira.R;
+import com.example.projetotrinsheira.createPost;
 import com.example.projetotrinsheira.posts;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -74,7 +75,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getActivity(), AddPostTest.class));
+                startActivity(new Intent(getActivity(), createPost.class));
             }
         });
 

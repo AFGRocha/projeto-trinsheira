@@ -2,13 +2,13 @@ package com.example.projetotrinsheira;
 
 import java.util.ArrayList;
 
-public class UserHelperClass { String username; String userId;  String description; Integer rank; String perfilPoints;String photo; String userType; Integer userLevelId; ArrayList<userAchievments> userAchievments; String local;
+public class UserHelperClass { String username; String userId;  String description; Integer rank; String perfilPoints;String photo; String userType; Integer userLevelId; ArrayList<userAchievments> userAchievments; String local; String votes;
 
     public UserHelperClass() {
 
     }
 
-    public UserHelperClass(String username, String description, String userId,  Integer rank,String perfilPoints, String photo, String userType,Integer userLevelId,ArrayList userAchievments,String local) {
+    public UserHelperClass(String username, String description, String userId,  Integer rank,String perfilPoints, String photo, String userType,Integer userLevelId,ArrayList userAchievments,String local, String votes) {
         this.username = username;
         this.description = description;
         this.userId = userId;
@@ -19,6 +19,7 @@ public class UserHelperClass { String username; String userId;  String descripti
         this.userLevelId = userLevelId;
         this.userAchievments= userAchievments;
         this.local= local;
+        this.votes = votes;
 
     }
 
@@ -100,5 +101,13 @@ public class UserHelperClass { String username; String userId;  String descripti
 
     public void setLocal(String local) {
         this.local = local;
+    }
+
+    public String getVotes() {
+        return votes;
+    }
+
+    public void setVotes(String votes) {
+        this.votes = votes;
     }
 }

@@ -87,9 +87,10 @@ public class Register extends AppCompatActivity {
                                user.setUserLevelId(0);
                                user.setUserType("0");
                                user.setLocal("");
+                               user.setVotes("");
 
                                db.collection("users").add(user);
-                               startActivity(new Intent(Register.this,LogOut.class));
+                               startActivity(new Intent(Register.this,MainActivityBottomNavigation.class));
                            }
                         }
                     });
