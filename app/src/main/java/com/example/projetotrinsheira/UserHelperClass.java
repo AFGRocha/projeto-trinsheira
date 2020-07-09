@@ -2,13 +2,13 @@ package com.example.projetotrinsheira;
 
 import java.util.ArrayList;
 
-public class UserHelperClass { String username; String userId;  String description; Integer rank; String perfilPoints;String photo; Integer userType; Integer userLevelId; ArrayList<userAchievments> userAchievments;
+public class UserHelperClass { String username; String userId;  String description; Integer rank; String perfilPoints;String photo; String userType; Integer userLevelId; ArrayList<userAchievments> userAchievments; String local;
 
     public UserHelperClass() {
 
     }
 
-    public UserHelperClass(String username, String description, String userId,  Integer rank,String perfilPoints, String photo, Integer userType,Integer userLevelId,ArrayList userAchievments) {
+    public UserHelperClass(String username, String description, String userId,  Integer rank,String perfilPoints, String photo, String userType,Integer userLevelId,ArrayList userAchievments,String local) {
         this.username = username;
         this.description = description;
         this.userId = userId;
@@ -18,6 +18,8 @@ public class UserHelperClass { String username; String userId;  String descripti
         this.userType = userType;
         this.userLevelId = userLevelId;
         this.userAchievments= userAchievments;
+        this.local= local;
+
     }
 
     public String getUsername() {
@@ -68,11 +70,11 @@ public class UserHelperClass { String username; String userId;  String descripti
         this.photo = photo;
     }
 
-    public Integer getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(Integer userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 
@@ -90,5 +92,13 @@ public class UserHelperClass { String username; String userId;  String descripti
 
     public void setUserAchievments(ArrayList<com.example.projetotrinsheira.userAchievments> userAchievments) {
         this.userAchievments = userAchievments;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
     }
 }

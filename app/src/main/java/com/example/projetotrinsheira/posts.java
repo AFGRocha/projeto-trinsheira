@@ -70,7 +70,7 @@ public class posts extends AppCompatActivity {
         final Button button = findViewById(R.id.btnInputComment);
         final Button buttonVote = findViewById(R.id.btnVote);
         final EditText editComment = findViewById(R.id.editComment);
-
+        final Button  buttonPdf = findViewById(R.id.buttonGetPdf);
         final Button buttonBack = findViewById(R.id.btnBack);
 
 
@@ -106,6 +106,12 @@ public class posts extends AppCompatActivity {
                                                 userNamePost.setText(documentUser.getString("username"));
                                                 userLocal.setText(documentUser.getString("local"));
                                                 userPoints.setText(documentUser.get("perfilPoints") + "pp");
+
+                                               // int num = parseInt(documentUser.get("userType")) ;
+String userTyper= documentUser.getString("userType").toString();
+                                                if(userTyper.equals("0")){
+                                                    buttonPdf.setVisibility(View.VISIBLE);
+                                                }
 
                                             }
                                         }
