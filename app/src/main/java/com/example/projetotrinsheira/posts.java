@@ -131,11 +131,7 @@ public class posts extends AppCompatActivity {
                                                 userLocal.setText(documentUser.getString("local"));
                                                 userPoints.setText(documentUser.get("perfilPoints") + "pp");
 
-                                               // int num = parseInt(documentUser.get("userType")) ;
-                                                String userTyper= documentUser.getString("userType").toString();
-                                                if(userTyper.equals("1")){
-                                                    buttonPdf.setVisibility(View.VISIBLE);
-                                                }
+
 
                                             }
                                         }
@@ -249,6 +245,12 @@ public class posts extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (final QueryDocumentSnapshot documentUser : task.getResult()) {
                                // Log.v("Yes", "Entrou");
+
+                                String userTyper= documentUser.getString("userType").toString();
+                                if(userTyper.equals("1")){
+                                    buttonPdf.setVisibility(View.VISIBLE);
+                                }
+
 
                                 Log.d("docUserVotes", "documentUser votes) data: " + documentUser.getString("votes"));
                                 String votesArray= documentUser.getString("votes");
