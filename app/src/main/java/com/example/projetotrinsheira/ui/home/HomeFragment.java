@@ -189,7 +189,7 @@ public String userIdDoc;
                                                             for (final QueryDocumentSnapshot documentUser : task.getResult()) {
 
                                                                 mPostImg.add(document.getString("image"));
-                                                                mTime.add("2 sem");
+                                                                mTime.add(document.getString("postDate"));
                                                                 mVotes.add(document.get("votes").toString());
                                                                 // mNames.add("Óscar Sousa");
                                                                 mDesc.add(document.getString("description"));
