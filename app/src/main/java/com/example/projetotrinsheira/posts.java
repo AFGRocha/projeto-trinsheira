@@ -1,9 +1,14 @@
 package com.example.projetotrinsheira;
 
+import android.Manifest;
 import android.app.Notification;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -22,10 +27,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +43,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +62,7 @@ public class posts extends AppCompatActivity {
 
         setContentView(R.layout.activity_posts);
         Intent intent = getIntent();
-
+        ActivityCompat.requestPermissions(posts.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         mAuth = FirebaseAuth.getInstance();
 
         //get xml items
@@ -74,9 +84,23 @@ public class posts extends AppCompatActivity {
         final Button buttonBack = findViewById(R.id.btnBack);
 
 
+
         final String postId = intent.getStringExtra("POST_ID");
         Log.v("Yes", " " + postId);
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final String[] myString = {""};
+        final String[] postName = {""};
+
+        //pdf maker button
+        buttonPdf.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                createMyPDF(postId, myString,postName);
+            }
+        });
+
+
 
         DocumentReference docRef = db.collection("posts").document(postId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -86,7 +110,7 @@ public class posts extends AppCompatActivity {
                     final DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d("postPage", "DocumentSnapshot data: " + document.getString("name"));
-
+                        postName[0] = document.getString("name");
                         db.collection("users")
                                 .whereEqualTo("userId", document.getString("userId"))
                                 .get()
@@ -108,8 +132,8 @@ public class posts extends AppCompatActivity {
                                                 userPoints.setText(documentUser.get("perfilPoints") + "pp");
 
                                                // int num = parseInt(documentUser.get("userType")) ;
-String userTyper= documentUser.getString("userType").toString();
-                                                if(userTyper.equals("0")){
+                                                String userTyper= documentUser.getString("userType").toString();
+                                                if(userTyper.equals("1")){
                                                     buttonPdf.setVisibility(View.VISIBLE);
                                                 }
 
@@ -145,6 +169,53 @@ String userTyper= documentUser.getString("userType").toString();
                                                                 }
                                                             }
                                                         });
+
+                                            }
+                                        }
+                                    }
+                                });
+
+                        db.collection("users")
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+
+                                            myString[0] = myString[0] + "Nome do local: " +document.getString("name") +"\nMorada: " + document.getString("adress") + "\nTotal de votos: " + document.getString("votes") +"\nVotantes:\n";
+                                            for (final QueryDocumentSnapshot documentUser : task.getResult()) {
+
+
+                                                String votesStringOld = documentUser.getString("votes");
+
+                                                String[] arrOfStr = votesStringOld.split(";", votesStringOld.length());
+
+                                                for(int i=0;i<arrOfStr.length;i++){
+                                                    if(arrOfStr[i].equals(postId)){
+
+                                                        myString[0] = myString[0] + documentUser.getString("username") + "\n";
+                                                        Log.v("Ogajo",myString[0]);
+                                                    }
+                                                    else{
+                                                        //votesStringNew=votesStringNew+";"+arrOfStr[i];
+                                                    }
+                                                }
+
+                                                /*nameView.setText(document.getString("name"));
+                                                imageView.setImageBitmap(StringToBitMap(document.getString("image")));
+                                                votesView.setText(document.getString("votes") + " votos");
+                                                descView.setText(document.getString("description"));
+                                                adressView.setText(document.getString("adress"));
+                                                imageViewautor.setImageBitmap(StringToBitMap(documentUser.getString("photo")));
+                                                userNamePost.setText(documentUser.getString("username"));
+                                                userLocal.setText(documentUser.getString("local"));
+                                                userPoints.setText(documentUser.get("perfilPoints") + "pp");
+
+                                                // int num = parseInt(documentUser.get("userType")) ;
+                                                String userTyper= documentUser.getString("userType").toString();
+                                                if(userTyper.equals("0")){
+                                                    buttonPdf.setVisibility(View.VISIBLE);
+                                                }*/
 
                                             }
                                         }
@@ -521,5 +592,43 @@ String userTyper= documentUser.getString("userType").toString();
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void createMyPDF(final String postId, final String[] myString, final String[] postName){
+
+        PdfDocument myPdfDocument = new PdfDocument();
+        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(300,600,1).create();
+        PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
+        final FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+
+
+        Paint myPaint = new Paint();
+        //final String[] myString = {"Votos:\n"};
+        int x = 10, y=25;
+
+        for (String line: myString[0].split("\n")){
+            myPage.getCanvas().drawText(line, x, y, myPaint);
+            y+=myPaint.descent()-myPaint.ascent();
+        }
+
+        myPdfDocument.finishPage(myPage);
+
+        String myFilePath = Environment.getExternalStorageDirectory().getPath() +"/" + postName[0] + ".pdf";
+        File myFile = new File(myFilePath);
+        try {
+            myPdfDocument.writeTo(new FileOutputStream(myFile));
+            Toast.makeText(posts.this, "PDF Exportado",
+                    Toast.LENGTH_LONG).show();
+            //Log.v("Entrou", "fez o pdf em " + Environment.getExternalStorageDirectory().getPath());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            //   myEditText.setText("ERROR");
+        }
+
+        myPdfDocument.close();
+    }
+
 
 }

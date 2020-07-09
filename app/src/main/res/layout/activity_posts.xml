@@ -304,14 +304,15 @@
 
             <Button
                 android:id="@+id/buttonGetPdf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
                 android:layout_marginBottom="24dp"
-                android:text="pdf"
-                android:visibility="invisible"
+                android:background="@drawable/download"
+                android:text=""
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/desc"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.24"
+                app:layout_constraintHorizontal_bias="0.07"
                 app:layout_constraintStart_toEndOf="@+id/nameViewId" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
